@@ -128,3 +128,62 @@
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mockup_poster_live.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mobile_pixel7.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
+
+
+---
+
+### Entrada Correlativa #[004]
+- **Fecha**: 2026-11-12 09:16:00 -06:00
+- **Fase**: Flujo Progresivo Secuencial Condicional, Purificación Fáctica Estricta, Anti-Sesgo y Temporizador de 5 Minutos.
+- **Contexto**: Aprobación formal tras compuerta Gate G0-Aprobación del plan canónico `/plan`. Eliminación de la barra de métricas del Hero por sobrecarga cognitiva innecesaria; implementación de revelación progresiva secuencial (Pasos 1 -> 2 -> 3 visibles únicamente al seleccionar la opción del paso anterior); panel de personalización visible y destacado en el encabezado superior; purificación fáctica estricta eliminando menciones erróneas o no autorizadas a Vicerrectoría, Dirección de Investigación, Rectoría y Comité de Ética; corrección de tono en discursos entre compañeros (erradicación de jerga informal hacia tono universitario respetuoso); imparcialidad metodológica contra sesgos de respuesta; erradicación de `[STICKER DE ENLACE]`; y calibración del cronómetro del Modo Aula exactamente a 5 minutos (05:00 / 300 segundos).
+
+#### [OPERACIÓN]
+1. Se suprimió la barra de 4 métricas del Hero en `index.html` para despejar la vista y erradicar saturación visual.
+2. Se reubicó el panel de personalización (`#config-panel`) directamente bajo el Hero, permitiendo configurar Facultad, Sede Universitaria, Nombre del Docente y Modo de Enlace de forma visible y prioritaria antes de interactuar con los discursos.
+3. Se implementó el flujo progresivo condicional:
+   - `#step-1-container` visible de entrada para seleccionar el canal de difusión.
+   - `#step-2-container` inicia oculto (`hidden`) y se revela con desplazamiento suave tras pulsar una tarjeta de canal.
+   - `#step-3-container` inicia oculto (`hidden`) y se revela con renderizado de tarjetas de discurso tras pulsar una tarjeta de perspectiva.
+4. Se ejecutó la purificación fáctica estricta en `speeches_data.js`, `index.html`, modales y pie de página, eliminando cualquier mención a *"Dirección de Investigación y Vicerrectoría Académica"*, *"Rectoría"* o *"Comité de Ética en Investigación"*. La atribución oficial se unificó bajo el **Proyecto de Investigación Académica sobre Utilidad Curricular e Inserción Laboral**, desarrollado por **Roberto Samuel García Cerna** en el marco de la **Universidad Dr. Andrés Bello (UNAB)**.
+5. Se corrigió el tono en los discursos entre estudiantes (peer-to-peer), sustituyendo modismos y jerga informal (*"Qué onda compañeros"*, *"Oigan gente"*, *"desde el cel"*, *"échame la mano"*) por una redacción universitaria colegial, respetuosa y formal.
+6. Se garantizó la imparcialidad psicométrica en todas las plantillas, erradicando preguntas capciosas o quejas inducidas para prevenir sesgos de respuesta en el instrumento diagnóstico.
+7. Se erradicó la meta-etiqueta técnica `[STICKER DE ENLACE]` reemplazándola por enlaces directos y limpios (`👉 {link}`).
+8. Se calibró el temporizador del Modo Aula 16:9 a **5 minutos (05:00 / 300 segundos)** con el botón *"▶️ Iniciar 5 Minutos"*, decrementando a 04:59 con alerta sonora final.
+9. Se actualizaron las suites de prueba:
+   - `tests/test_despliegue_integrity.py`: ampliada a 10 pruebas unitarias para certificar purificación fáctica, clases `hidden` iniciales y calibración a 300s. Aprobadas 10/10 (100% OK).
+   - `tests/test_despliegue_e2e_playwright.py`: suite E2E completa simulando la revelación progresiva, interactividad del panel superior y decremento del temporizador en 5 minutos. Aprobadas 2/2 suites (Desktop y Pixel 7).
+10. Se ejecutó la auditoría forense con `audit_engine.py`: 0 errores registrados, convergencia de Punto Fijo en Pase 2, Índice de Vitalidad Bonsái del 75.0% (0 ramas podables).
+11. Se sincronizó el repositorio y se desplegó a producción en GitHub Pages bajo el commit `eb057cb` en la rama `main`, verificando estado HTTP 200 OK.
+12. Se capturaron evidencias visuales en vivo del portal en producción, afiche con QR y cronómetro de 5 minutos en Modo Aula.
+
+#### [VALIDACIÓN]
+1. **Compuerta de Integridad Unitaria (G1-G2)**:
+   - 10 de 10 pruebas unitarias aprobadas (`test_despliegue_integrity.py`).
+2. **Compuerta E2E Playwright en Navegador Real (G3-G4)**:
+   - 2 de 2 suites Playwright aprobadas exitosamente (30.79s).
+   - Verificación de ocultamiento inicial de Pasos 2 y 3, revelación secuencial interactiva, personalizador visible, temporizador de 05:00 a 04:59 y adaptabilidad móvil en Pixel 7.
+3. **Compuerta Forense y Estabilidad (G4)**:
+   - 0 errores registrados por `audit_engine.py`, Punto Fijo alcanzado en Pase 2, Vitalidad 75.0%.
+4. **Compuerta de Despliegue en Producción (G5)**:
+   - Portal Canónico: `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`
+   - Estado HTTP: **200 OK**.
+   - Capturas de pantalla en producción verificadas y almacenadas en el directorio de artefactos.
+5. **Compuerta Documental y Ledger v2 (G6)**:
+   - `Manual_Dependencias_despliegue.md` sincronizado con nuevos contratos y diagramas DAG.
+   - Bitácora canónica única actualizada acumulativamente bajo Entrada Correlativa `#[004]`.
+
+#### [ARTEFACTOS]
+- `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`
+- `https://github.com/rsamuel91gc/roi-academico-unab-despliegue`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\index.html`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\js\speeches_data.js`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\js\app.js`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Manual_Dependencias_despliegue.md`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\tests\test_despliegue_integrity.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\tests\test_despliegue_e2e_playwright.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Auditoria_Forense_despliegue.md`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_production_live.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mockup_poster_live.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_presentation_5min_live.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mobile_pixel7.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
