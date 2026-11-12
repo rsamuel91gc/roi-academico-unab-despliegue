@@ -258,6 +258,30 @@ Agradezco su participación activa.`
   // 3. PERSPECTIVA: ESTUDIANTE A ESTUDIANTE (PEER-TO-PEER / COLEGIAL)
   // =========================================================================
   {
+    id: "peer-whatsapp-universal",
+    perspective: "estudiante",
+    perspectiveLabel: "🎓 Estudiante a Estudiante",
+    channel: "whatsapp",
+    channelLabel: "💬 WhatsApp / Redes",
+    title: "Invitación Universal de Estudiante a Estudiante (Toda la UNAB)",
+    context: "Ideal para compartir de compañero a compañero en cualquier grupo o chat sin importar sede ni facultad.",
+    readingTime: "30s",
+    words: 75,
+    subject: "Encuesta Estudiantil UNAB - Utilidad Curricular",
+    body: `¡Hola compañeros! 👋🦅
+
+Les comparto una encuesta muy importante que estamos respondiendo los estudiantes de la UNAB sobre si lo que vemos en las materias realmente nos prepara para el trabajo y el futuro profesional.
+
+⏱️ Solo toma de 3 a 5 minutos.
+🔒 Es 100% anónima (no pide carné ni correo).
+📜 Al terminar te genera una constancia digital oficial con comprobante SHA-256.
+
+Aquí está el enlace directo:
+👉 {link}
+
+¡Apoyemos llenándola para que se escuche la opinión de todas las carreras y sedes!`
+  },
+  {
     id: "peer-whatsapp-amigos",
     perspective: "estudiante",
     perspectiveLabel: "🎓 Estudiante a Estudiante",
@@ -427,7 +451,7 @@ Proyecto de Investigación Académica • Universidad Dr. Andrés Bello`
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
     title: "Aviso de Muestreo y Participación Representativa",
-    context: "Para recordar a los grupos la importancia de alcanzar la representatividad estadística por facultad.",
+    context: "Para compartir con los grupos la importancia de alcanzar la representatividad estadística por facultad.",
     readingTime: "35s",
     words: 85,
     subject: "Aviso de Muestreo Estadístico",
@@ -435,7 +459,7 @@ Proyecto de Investigación Académica • Universidad Dr. Andrés Bello`
 
 Estudiantes de {facultad} (Sede {sede}):
 
-Les recordamos la importancia de sumar su perspectiva a la muestra estadística de su carrera. Una participación representativa garantiza que los datos reflejen con fidelidad las experiencias de todas las áreas de estudio.
+Extendemos una cordial invitación a sumar su perspectiva a la muestra estadística de su carrera. Una participación representativa garantiza que los datos reflejen con fidelidad las experiencias de todas las áreas de estudio.
 
 ⏱️ Duración: {tiempo}.
 🔒 100% anónimo y confidencial.
@@ -560,6 +584,7 @@ Participa aquí:
 
 // Opciones de configuración institucional para inyección dinámica
 window.UNAB_CAMPUSES = [
+  "General (Todas las Sedes UNAB)",
   "San Salvador (Sede Central)",
   "Sonsonate",
   "Chalatenango",
@@ -567,6 +592,7 @@ window.UNAB_CAMPUSES = [
 ];
 
 window.UNAB_FACULTADES = [
+  "General (Toda la Universidad UNAB / Cualquier Carrera)",
   "Facultad de Tecnología e Innovación",
   "Facultad de Ciencias Económicas",
   "Facultad de Ciencias de la Salud",

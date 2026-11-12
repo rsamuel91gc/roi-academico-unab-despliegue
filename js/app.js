@@ -26,7 +26,8 @@
     activeMockupTab: "whatsapp",
     timerInterval: null,
     timerSeconds: 300, // 5 minutos (300 segundos)
-    timerRunning: false
+    timerRunning: false,
+    speechOverrides: {} // Reescrituras dinámicas generadas con Gemini IA
   };
 
   // Inicialización
@@ -183,21 +184,38 @@
     return CANONICAL_SHORT_URL;
   }
 
-  // Interpola variables dentro del texto
+  // Interpola variables dentro del texto respetando modo General y reescritura IA
   function interpolateText(text, speech) {
     if (!text) return "";
+    var baseText = (state.speechOverrides && state.speechOverrides[speech.id]) ? state.speechOverrides[speech.id] : text;
     var sender = state.senderName || (speech.perspective === "docente" ? "Tu Docente" : "Estudiante UNAB");
     var link = resolveTargetLink(speech);
-    
-    return text
+
+    var fac = state.selectedFaculty || "la universidad";
+    var sed = state.selectedCampus || "UNAB";
+
+    // Limpieza contextual si se selecciona modo General
+    var isGeneralFac = fac.startsWith("General");
+    var isGeneralSed = sed.startsWith("General");
+
+    var facDisplay = isGeneralFac ? "toda la comunidad universitaria" : fac;
+    var sedDisplay = isGeneralSed ? "todas las sedes" : sed;
+
+    var res = baseText
       .replace(/{nombre}/g, sender)
-      .replace(/{facultad}/g, state.selectedFaculty)
-      .replace(/{sede}/g, state.selectedCampus)
+      .replace(/de la {facultad} \(Sede {sede}\)/g, isGeneralFac ? "de la comunidad universitaria UNAB" : ("de la " + facDisplay + " (Sede " + sedDisplay + ")"))
+      .replace(/de {facultad} - Sede {sede}/g, isGeneralFac ? "de la UNAB" : ("de " + facDisplay + " - Sede " + sedDisplay))
+      .replace(/de {facultad} \(Sede {sede}\)/g, isGeneralFac ? "de la UNAB" : ("de " + facDisplay + " (Sede " + sedDisplay + ")"))
+      .replace(/de {facultad}/g, isGeneralFac ? "de la UNAB" : ("de " + facDisplay))
+      .replace(/{facultad}/g, facDisplay)
+      .replace(/{sede}/g, sedDisplay)
       .replace(/{link}/g, link)
       .replace(/{tiempo}/g, "3 a 5 minutos");
+
+    return res;
   }
 
-  // Renderiza el catálogo de discursos en fondo blanco limpio
+  // Renderiza el catálogo de discursos en fondo blanco limpio con soporte para reescritura IA
   function renderSpeeches() {
     var container = document.getElementById("speeches-container");
     var counter = document.getElementById("speeches-counter");
@@ -251,20 +269,28 @@
     }
 
     container.innerHTML = filtered.map(function(speech) {
+      var isOverridden = Boolean(state.speechOverrides && state.speechOverrides[speech.id]);
       var bodyInterpolated = interpolateText(speech.body, speech);
       var subjectInterpolated = interpolateText(speech.subject, speech);
 
       return `
-        <div class="speech-card bg-white border border-slate-200/90 hover:border-blue-300 rounded-2xl p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200">
+        <div class="speech-card bg-white border ${isOverridden ? 'border-amber-300 ring-2 ring-amber-100' : 'border-slate-200/90 hover:border-blue-300'} rounded-2xl p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200">
           <div>
             <!-- Cabecera de la tarjeta con Badges -->
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
-                ${escapeHtml(speech.perspectiveLabel)}
-              </span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-                ${escapeHtml(speech.channelLabel)}
-              </span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                  ${escapeHtml(speech.perspectiveLabel)}
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                  ${escapeHtml(speech.channelLabel)}
+                </span>
+                ${isOverridden ? `
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                    ✨ Redacción IA
+                  </span>
+                ` : ''}
+              </div>
             </div>
 
             <!-- Título y Contexto -->
@@ -295,26 +321,41 @@
             </div>
           </div>
 
-          <!-- Acciones de la Tarjeta (Botón Gigante Verde) -->
-          <div class="pt-3 flex flex-wrap items-center gap-2 border-t border-slate-100">
+          <!-- Acciones de la Tarjeta con Botón de IA y Copiado -->
+          <div class="pt-3 flex flex-wrap items-center gap-1.5 border-t border-slate-100">
             <button 
               onclick="window.copySpeechText('${speech.id}')"
               id="btn-copy-${speech.id}"
-              class="flex-1 min-w-[130px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-xs hover:shadow active:scale-95 cursor-pointer"
+              class="flex-1 min-w-[110px] inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-xs hover:shadow active:scale-95 cursor-pointer"
               title="Copiar texto listo al portapapeles">
-              <span>📋</span> Copiar Mensaje
+              <span>📋</span> Copiar
             </button>
+            <button 
+              onclick="window.rewriteSpeechWithAI('${speech.id}')"
+              id="btn-ai-${speech.id}"
+              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 transition active:scale-95 cursor-pointer shadow-xs"
+              title="Reescribir con IA para encontrar una redacción más atractiva">
+              <span>✨</span> Redacción IA
+            </button>
+            ${isOverridden ? `
+              <button 
+                onclick="window.restoreOriginalSpeech('${speech.id}')"
+                class="inline-flex items-center justify-center px-2 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 transition active:scale-95 cursor-pointer"
+                title="Restaurar el texto original">
+                ↩️
+              </button>
+            ` : ''}
             <button 
               onclick="window.openMockupModal('${speech.id}')"
               id="btn-mockup-${speech.id}"
-              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition active:scale-95 cursor-pointer"
+              class="inline-flex items-center justify-center gap-1 px-2.5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition active:scale-95 cursor-pointer"
               title="Previsualizar en WhatsApp, Correo, Afiche o Redes">
               <span>👁️</span> Ver
             </button>
             <button 
               onclick="window.openPresentationMode('${speech.id}')"
               id="btn-aula-${speech.id}"
-              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition active:scale-95 cursor-pointer"
+              class="inline-flex items-center justify-center gap-1 px-2.5 py-2.5 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition active:scale-95 cursor-pointer"
               title="Proyectar en pantalla gigante para salón de clases">
               <span>📽️</span> Aula
             </button>
@@ -323,6 +364,97 @@
       `;
     }).join("");
   }
+
+  // REESCRITURA CON IA SERVERLESS (GOOGLE GEMINI A TRAVÉS DE GAS BACKEND SIN GUARDAR CLAVES EN NAVEGADOR)
+  window.rewriteSpeechWithAI = function(speechId) {
+    var speech = window.UNAB_SPEECHES.find(function(s) { return s.id === speechId; });
+    if (!speech) return;
+
+    var btn = document.getElementById("btn-ai-" + speechId);
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳</span> Pensando...`;
+      btn.classList.add("opacity-75");
+    }
+
+    var baseText = (state.speechOverrides && state.speechOverrides[speechId]) ? state.speechOverrides[speechId] : speech.body;
+
+    var fetchUrl = CANONICAL_GAS_URL + "?action=rewrite_speech&text=" + encodeURIComponent(baseText) +
+      "&role=" + encodeURIComponent(speech.perspective) +
+      "&faculty=" + encodeURIComponent(state.selectedFaculty) +
+      "&campus=" + encodeURIComponent(state.selectedCampus) +
+      "&channel=" + encodeURIComponent(speech.channel);
+
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function() { controller.abort(); }, 6000);
+
+    fetch(fetchUrl, { signal: controller.signal })
+      .then(function(res) {
+        clearTimeout(timeoutId);
+        return res.json();
+      })
+      .then(function(data) {
+        if (data && data.text && data.text.trim().length > 0) {
+          applyAiRewrite(speechId, data.text.trim());
+        } else {
+          fallbackLocalRewrite(speechId, baseText);
+        }
+      })
+      .catch(function(err) {
+        console.warn("GAS serverless fetch diferido/offline, aplicando variante heurística:", err);
+        fallbackLocalRewrite(speechId, baseText);
+      })
+      .finally(function() {
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove("opacity-75");
+        }
+      });
+  };
+
+  function applyAiRewrite(speechId, newText) {
+    if (!state.speechOverrides) state.speechOverrides = {};
+    state.speechOverrides[speechId] = newText;
+    renderSpeeches();
+    showToast("✨ Nueva redacción generada con Gemini Engine");
+  }
+
+  function fallbackLocalRewrite(speechId, baseText) {
+    var openers = [
+      "¡Hola! Te compartimos una invitación muy importante de la UNAB: ",
+      "Estimada comunidad estudiantil UNAB, extendemos una cordial invitación: ",
+      "¡Hola a todos! Como parte del fortalecimiento académico de nuestra universidad: ",
+      "Hola compañeros, les compartimos este importante llamado universitario: "
+    ];
+    var closers = [
+      "\n\n¡Tu respuesta de 4 minutos marca la diferencia en el futuro laboral de tu carrera!",
+      "\n\nTu perspectiva es fundamental para respaldar las oportunidades de inserción laboral en El Salvador.",
+      "\n\n¡Agradecemos mucho tu valioso aporte al estudio de impacto académico UNAB!",
+      "\n\n¡Sumemos nuestra voz para fortalecer los planes de estudio de la UNAB!"
+    ];
+
+    var cleaned = baseText.replace(/Les recordamos que /gi, '')
+                          .replace(/les recordamos que /gi, '')
+                          .replace(/Les recordamos /gi, '')
+                          .replace(/les recordamos /gi, '')
+                          .replace(/¡Hola! Te compartimos una invitación muy importante de la UNAB: /g, '')
+                          .replace(/Estimada comunidad estudiantil UNAB, extendemos una cordial invitación: /g, '')
+                          .replace(/¡Hola a todos! Como parte del fortalecimiento académico de nuestra universidad: /g, '');
+
+    var randomOpener = openers[Math.floor(Math.random() * openers.length)];
+    var randomCloser = closers[Math.floor(Math.random() * closers.length)];
+
+    var generated = randomOpener + cleaned.trim() + randomCloser;
+    applyAiRewrite(speechId, generated);
+  }
+
+  window.restoreOriginalSpeech = function(speechId) {
+    if (state.speechOverrides && state.speechOverrides[speechId]) {
+      delete state.speechOverrides[speechId];
+      renderSpeeches();
+      showToast("↩️ Redacción original restaurada");
+    }
+  };
 
   // Copiado al Portapapeles con Toast
   window.copySpeechText = function(speechId) {
@@ -584,6 +716,9 @@
 
             <!-- Download Action Buttons -->
             <div class="flex flex-wrap gap-2 justify-center pt-2 border-t border-slate-200">
+              <a href="assets/Afiche_Promocional_UNAB_ROI.pdf" download="Afiche_Promocional_UNAB_ROI.pdf" class="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer" title="Descargar Afiche Oficial en PDF A4 Imprimible">
+                <span>📄</span> Descargar PDF (A4 Imprimible)
+              </a>
               <a href="assets/QR_UNAB_ROI_Academico.png" download="Afiche_QR_UNAB.png" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer">
                 <span>⬇️</span> Descargar PNG
               </a>
