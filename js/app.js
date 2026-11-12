@@ -1,7 +1,7 @@
 /**
  * app.js - Controlador Lógico Reactivo y Gestor de Campaña Multicanal
  * Plataforma: roi-academico-unab-despliegue (Universidad Dr. Andrés Bello)
- * Estándar: Cero Mocks, Manejo de Estado en Caliente, Modo Presentación 16:9
+ * Estándar: Cero Mocks, Manejo de Estado en Caliente, Modo Presentación 16:9, Fondo Blanco Luminoso
  */
 
 (function() {
@@ -24,7 +24,7 @@
     activeMockupSpeech: null,
     activeMockupTab: "whatsapp",
     timerInterval: null,
-    timerSeconds: 180, // 3 minutos
+    timerSeconds: 240, // 4 minutos (dentro del rango 3-5 min)
     timerRunning: false
   };
 
@@ -88,38 +88,40 @@
     if (!badge) return;
     if (state.linkMode === "utm") {
       badge.textContent = "Modo UTM Activo (Tracking Analítico)";
-      badge.className = "text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40";
+      badge.className = "text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200 truncate";
     } else {
-      badge.textContent = "Enlace Corto Verificado (TinyURL)";
-      badge.className = "text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+      badge.textContent = "Enlace Corto (TinyURL)";
+      badge.className = "text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 truncate";
     }
   }
 
-  // Inicializa botones de filtro por perspectiva y canal
+  // Inicializa botones de filtro por perspectiva y canal (Medios Separados)
   function initFilters() {
+    // 1. Filtros por Perspectiva
     var persButtons = document.querySelectorAll("[data-filter-perspective]");
     persButtons.forEach(function(btn) {
       btn.addEventListener("click", function() {
         persButtons.forEach(function(b) {
-          b.classList.remove("active-filter-btn", "bg-amber-500", "text-slate-950", "border-amber-400");
-          b.classList.add("bg-slate-800/80", "text-slate-300", "border-slate-700");
+          b.classList.remove("active-pers-pill", "bg-blue-600", "text-white", "shadow-xs");
+          b.classList.add("bg-slate-100", "text-slate-700", "border-slate-200");
         });
-        this.classList.add("active-filter-btn", "bg-amber-500", "text-slate-950", "border-amber-400");
-        this.classList.remove("bg-slate-800/80", "text-slate-300", "border-slate-700");
+        this.classList.add("active-pers-pill", "bg-blue-600", "text-white", "shadow-xs");
+        this.classList.remove("bg-slate-100", "text-slate-700", "border-slate-200");
         state.activePerspective = this.getAttribute("data-filter-perspective");
         renderSpeeches();
       });
     });
 
+    // 2. Filtros por Canal (Medios Separados)
     var chanButtons = document.querySelectorAll("[data-filter-channel]");
     chanButtons.forEach(function(btn) {
       btn.addEventListener("click", function() {
         chanButtons.forEach(function(b) {
-          b.classList.remove("active-filter-btn", "bg-amber-500", "text-slate-950", "border-amber-400");
-          b.classList.add("bg-slate-800/80", "text-slate-300", "border-slate-700");
+          b.classList.remove("active-channel-card", "border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
+          b.classList.add("border-slate-200", "bg-white", "text-slate-800");
         });
-        this.classList.add("active-filter-btn", "bg-amber-500", "text-slate-950", "border-amber-400");
-        this.classList.remove("bg-slate-800/80", "text-slate-300", "border-slate-700");
+        this.classList.add("active-channel-card", "border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
+        this.classList.remove("border-slate-200", "bg-white", "text-slate-800");
         state.activeChannel = this.getAttribute("data-filter-channel");
         renderSpeeches();
       });
@@ -159,10 +161,10 @@
       .replace(/{facultad}/g, state.selectedFaculty)
       .replace(/{sede}/g, state.selectedCampus)
       .replace(/{link}/g, link)
-      .replace(/{tiempo}/g, "2m 15s");
+      .replace(/{tiempo}/g, "3 a 5 minutos");
   }
 
-  // Renderiza el catálogo de discursos
+  // Renderiza el catálogo de discursos en fondo blanco limpio
   function renderSpeeches() {
     var container = document.getElementById("speeches-container");
     var counter = document.getElementById("speeches-counter");
@@ -180,16 +182,16 @@
     });
 
     if (counter) {
-      counter.textContent = filtered.length + " de " + window.UNAB_SPEECHES.length + " recursos comunicativos disponibles";
+      counter.textContent = filtered.length + " de " + window.UNAB_SPEECHES.length + " mensajes disponibles";
     }
 
     if (filtered.length === 0) {
       container.innerHTML = `
-        <div class="col-span-full py-16 text-center bg-slate-900/60 rounded-2xl border border-slate-800 p-8">
-          <div class="text-4xl mb-3">🔍</div>
-          <h3 class="text-lg font-bold text-slate-200">No se encontraron discursos con los filtros actuales</h3>
-          <p class="text-slate-400 text-sm mt-1">Intenta seleccionar otra perspectiva o limpiar la búsqueda.</p>
-          <button id="btn-reset-filters" class="mt-4 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold rounded-lg text-xs transition">
+        <div class="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-200 p-8 shadow-xs">
+          <div class="text-4xl mb-2">🔍</div>
+          <h3 class="text-base font-bold text-slate-800">No se encontraron discursos para esta combinación</h3>
+          <p class="text-slate-500 text-xs mt-1">Intenta seleccionar "Todos" en los medios o perspectivas.</p>
+          <button id="btn-reset-filters" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition cursor-pointer">
             Restablecer todos los filtros
           </button>
         </div>
@@ -212,67 +214,68 @@
     container.innerHTML = filtered.map(function(speech) {
       var bodyInterpolated = interpolateText(speech.body, speech);
       var subjectInterpolated = interpolateText(speech.subject, speech);
-      var currentLink = resolveTargetLink(speech);
 
       return `
-        <div class="speech-card bg-slate-900/90 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 flex flex-col justify-between shadow-xl transition-all duration-200 hover:-translate-y-1">
+        <div class="speech-card bg-white border border-slate-200/90 hover:border-blue-300 rounded-2xl p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200">
           <div>
             <!-- Cabecera de la tarjeta con Badges -->
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
                 ${escapeHtml(speech.perspectiveLabel)}
               </span>
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                 ${escapeHtml(speech.channelLabel)}
               </span>
             </div>
 
             <!-- Título y Contexto -->
-            <h3 class="text-lg font-extrabold text-white tracking-tight leading-snug mb-1">
+            <h4 class="text-sm sm:text-base font-black text-slate-900 tracking-tight leading-snug mb-1">
               ${escapeHtml(speech.title)}
-            </h3>
-            <p class="text-xs text-slate-400 mb-4 line-clamp-2">
-              💡 <span class="text-slate-300 font-medium">${escapeHtml(speech.context)}</span>
+            </h4>
+            <p class="text-xs text-slate-500 mb-3 line-clamp-2">
+              💡 <span class="text-slate-600 font-medium">${escapeHtml(speech.context)}</span>
             </p>
 
             <!-- Metadatos de Lectura -->
-            <div class="flex items-center gap-4 text-xs text-slate-400 mb-4 pb-3 border-b border-slate-800">
-              <span class="inline-flex items-center gap-1">⏱️ ${escapeHtml(speech.readingTime)}</span>
-              <span class="inline-flex items-center gap-1">📝 ~${speech.words} palabras</span>
-              <span class="inline-flex items-center gap-1 text-emerald-400">🔗 Link activo</span>
+            <div class="flex items-center gap-3 text-[11px] text-slate-500 mb-3 pb-2.5 border-b border-slate-100">
+              <span class="inline-flex items-center gap-1">⏱️ Lectura: ${escapeHtml(speech.readingTime)}</span>
+              <span class="inline-flex items-center gap-1 font-semibold text-blue-700">📋 Encuesta: 3 a 5 min</span>
             </div>
 
-            <!-- Asunto (si aplica) -->
+            <!-- Asunto Recomendado (si aplica) -->
             ${speech.subject ? `
-              <div class="mb-3 bg-slate-950/70 p-2.5 rounded-lg border border-slate-800 text-xs">
-                <span class="text-slate-400 font-semibold block mb-0.5">Asunto recomendado:</span>
-                <span class="text-amber-200 font-medium select-all">${escapeHtml(subjectInterpolated)}</span>
+              <div class="mb-3 bg-blue-50/70 p-2.5 rounded-xl border border-blue-100 text-xs">
+                <span class="text-blue-900 font-bold block mb-0.5">Asunto sugerido:</span>
+                <span class="text-blue-800 font-medium select-all">${escapeHtml(subjectInterpolated)}</span>
               </div>
             ` : ''}
 
             <!-- Cuerpo del Discurso -->
-            <div class="relative bg-slate-950/90 rounded-xl p-4 border border-slate-800/80 text-xs text-slate-300 font-mono whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto select-all mb-4 scrollbar-thin">
+            <div class="relative bg-slate-50 rounded-xl p-3.5 border border-slate-200 text-xs text-slate-700 font-mono whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto select-all mb-4 scrollbar-thin">
               ${escapeHtml(bodyInterpolated)}
             </div>
           </div>
 
-          <!-- Acciones de la Tarjeta -->
-          <div class="pt-2 flex flex-wrap items-center gap-2 border-t border-slate-800/70">
+          <!-- Acciones de la Tarjeta (Botón Gigante Verde) -->
+          <div class="pt-3 flex flex-wrap items-center gap-2 border-t border-slate-100">
             <button 
               onclick="window.copySpeechText('${speech.id}')"
               id="btn-copy-${speech.id}"
-              class="flex-1 min-w-[130px] inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition shadow-md hover:shadow-amber-500/20 active:scale-95">
-              <span>📋</span> Copiar Speech
+              class="flex-1 min-w-[130px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white transition shadow-xs hover:shadow active:scale-95 cursor-pointer"
+              title="Copiar texto listo al portapapeles">
+              <span>📋</span> Copiar Mensaje
             </button>
             <button 
               onclick="window.openMockupModal('${speech.id}')"
-              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition hover:border-slate-600 active:scale-95"
-              title="Previsualizar en WhatsApp, Correo o Redes">
-              <span>👁️</span> Mockup
+              id="btn-mockup-${speech.id}"
+              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition active:scale-95 cursor-pointer"
+              title="Previsualizar en WhatsApp, Correo, Afiche o Redes">
+              <span>👁️</span> Ver
             </button>
             <button 
               onclick="window.openPresentationMode('${speech.id}')"
-              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-300 border border-indigo-500/40 transition active:scale-95"
+              id="btn-aula-${speech.id}"
+              class="inline-flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition active:scale-95 cursor-pointer"
               title="Proyectar en pantalla gigante para salón de clases">
               <span>📽️</span> Aula
             </button>
@@ -308,15 +311,13 @@
     if (btn) {
       var originalHtml = btn.innerHTML;
       btn.innerHTML = '<span>✅</span> ¡Copiado!';
-      btn.classList.add("bg-emerald-500", "text-slate-950");
-      btn.classList.remove("bg-amber-500");
+      btn.classList.add("bg-emerald-800");
       setTimeout(function() {
         btn.innerHTML = originalHtml;
-        btn.classList.remove("bg-emerald-500");
-        btn.classList.add("bg-amber-500");
+        btn.classList.remove("bg-emerald-800");
       }, 2000);
     }
-    showToast("Discurso copiado al portapapeles con éxito. ¡Listo para pegar!");
+    showToast("Mensaje copiado al portapapeles con éxito. ¡Listo para pegar!");
   }
 
   function fallbackCopyText(text, speechId) {
@@ -358,41 +359,50 @@
     var closePresBtn = document.getElementById("btn-close-presentation");
     if (closePresBtn) closePresBtn.addEventListener("click", closePresentationMode);
 
-    // Pestañas del Mockup
+    // Pestañas del Mockup (WhatsApp, Email, Poster con QR, Instagram)
     var mockupTabs = document.querySelectorAll("[data-mockup-tab]");
     mockupTabs.forEach(function(tab) {
       tab.addEventListener("click", function() {
         mockupTabs.forEach(function(t) {
-          t.classList.remove("bg-amber-500", "text-slate-950", "font-bold");
-          t.classList.add("bg-slate-800", "text-slate-300");
+          t.classList.remove("bg-blue-600", "text-white", "font-bold");
+          t.classList.add("bg-slate-100", "text-slate-700", "font-semibold");
         });
-        this.classList.add("bg-amber-500", "text-slate-950", "font-bold");
-        this.classList.remove("bg-slate-800", "text-slate-300");
+        this.classList.add("bg-blue-600", "text-white", "font-bold");
+        this.classList.remove("bg-slate-100", "text-slate-700", "font-semibold");
         state.activeMockupTab = this.getAttribute("data-mockup-tab");
         renderActiveMockupContent();
       });
     });
   }
 
-  window.openMockupModal = function(speechId) {
+  window.openMockupModal = function(speechId, preferredTab) {
     var speech = window.UNAB_SPEECHES.find(function(s) { return s.id === speechId; });
-    if (!speech) return;
+    if (!speech) speech = window.UNAB_SPEECHES[0];
 
     state.activeMockupSpeech = speech;
-    // Seleccionar pestaña automática según el canal
-    if (speech.channel === "email") state.activeMockupTab = "email";
-    else if (speech.channel === "social") state.activeMockupTab = "instagram";
-    else state.activeMockupTab = "whatsapp";
+    
+    // Seleccionar pestaña automática según canal o preferencia
+    if (preferredTab) {
+      state.activeMockupTab = preferredTab;
+    } else if (speech.channel === "print") {
+      state.activeMockupTab = "poster";
+    } else if (speech.channel === "email") {
+      state.activeMockupTab = "email";
+    } else if (speech.channel === "social") {
+      state.activeMockupTab = "instagram";
+    } else {
+      state.activeMockupTab = "whatsapp";
+    }
 
     // Actualizar botones de pestaña
     var mockupTabs = document.querySelectorAll("[data-mockup-tab]");
     mockupTabs.forEach(function(t) {
       if (t.getAttribute("data-mockup-tab") === state.activeMockupTab) {
-        t.classList.add("bg-amber-500", "text-slate-950", "font-bold");
-        t.classList.remove("bg-slate-800", "text-slate-300");
+        t.classList.add("bg-blue-600", "text-white", "font-bold");
+        t.classList.remove("bg-slate-100", "text-slate-700", "font-semibold");
       } else {
-        t.classList.remove("bg-amber-500", "text-slate-950", "font-bold");
-        t.classList.add("bg-slate-800", "text-slate-300");
+        t.classList.remove("bg-blue-600", "text-white", "font-bold");
+        t.classList.add("bg-slate-100", "text-slate-700", "font-semibold");
       }
     });
 
@@ -418,94 +428,176 @@
     var nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     if (state.activeMockupTab === "whatsapp") {
+      // WhatsApp Web Oficial en Modo Claro
       container.innerHTML = `
-        <div class="max-w-md mx-auto bg-[#0b141a] text-slate-100 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+        <div class="max-w-md mx-auto bg-[#efeae2] text-slate-900 rounded-2xl overflow-hidden border border-slate-300 shadow-xl">
           <!-- WhatsApp Header -->
-          <div class="bg-[#202c33] px-4 py-3 flex items-center justify-between border-b border-slate-700">
+          <div class="bg-[#075e54] text-white px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-sm">
+              <div class="w-10 h-10 rounded-full bg-amber-400 text-slate-900 flex items-center justify-center font-bold text-base shadow">
                 🦅
               </div>
               <div>
-                <div class="text-sm font-bold text-slate-200">${escapeHtml(sender)}</div>
-                <div class="text-[11px] text-emerald-400">en línea</div>
+                <div class="text-sm font-bold text-white">${escapeHtml(sender)}</div>
+                <div class="text-[11px] text-emerald-200">en línea</div>
               </div>
             </div>
-            <div class="text-slate-400 text-sm">⋮</div>
+            <div class="text-white text-sm">⋮</div>
           </div>
           <!-- WhatsApp Chat Area -->
-          <div class="p-4 bg-[radial-gradient(#1f2c34_1px,transparent_1px)] bg-[size:16px_16px] min-h-[260px] flex flex-col justify-end">
-            <div class="bg-[#005c4b] text-slate-100 rounded-2xl rounded-tr-sm p-3.5 max-w-[90%] self-end shadow-md text-xs leading-relaxed">
+          <div class="p-4 min-h-[260px] flex flex-col justify-end bg-[radial-gradient(#d1d7db_1px,transparent_1px)] bg-[size:16px_16px]">
+            <div class="bg-[#dcf8c6] text-slate-900 rounded-2xl rounded-tr-sm p-3.5 max-w-[90%] self-end shadow text-xs leading-relaxed border border-[#c4e3b0]">
               <div class="whitespace-pre-wrap">${escapeHtml(textInterpolated)}</div>
-              <div class="flex items-center justify-end gap-1 text-[10px] text-emerald-200 mt-1.5">
+              <div class="flex items-center justify-end gap-1 text-[10px] text-slate-500 mt-1.5">
                 <span>${nowTime}</span>
-                <span class="text-cyan-300">✓✓</span>
+                <span class="text-blue-500 font-bold">✓✓</span>
               </div>
             </div>
           </div>
         </div>
       `;
     } else if (state.activeMockupTab === "email") {
+      // Correo Institucional en Modo Claro
       container.innerHTML = `
-        <div class="max-w-xl mx-auto bg-slate-900 text-slate-200 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl text-xs">
+        <div class="max-w-xl mx-auto bg-white text-slate-800 rounded-2xl overflow-hidden border border-slate-300 shadow-xl text-xs">
           <!-- Email Client Header -->
-          <div class="bg-slate-800 px-4 py-3 border-b border-slate-700 flex items-center justify-between">
+          <div class="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-              <span class="ml-2 font-mono text-slate-400 text-[11px]">Bandeja de Entrada • UNAB Mail</span>
+              <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <span class="ml-2 font-semibold text-slate-600 text-[11px]">Bandeja de Entrada • UNAB Mail</span>
             </div>
           </div>
           <!-- Email Meta -->
-          <div class="p-4 bg-slate-950/80 border-b border-slate-800 space-y-2">
-            <div><span class="text-slate-400 font-bold">De:</span> <span class="text-slate-200">${escapeHtml(sender)} &lt;comunicacion@unab.edu.sv&gt;</span></div>
-            <div><span class="text-slate-400 font-bold">Para:</span> <span class="text-slate-300">estudiantes.${state.selectedCampus.toLowerCase().replace(/[^a-z]/g, '')}@unab.edu.sv</span></div>
-            <div><span class="text-slate-400 font-bold">Asunto:</span> <span class="text-amber-300 font-semibold">${escapeHtml(subjectInterpolated || "Diagnóstico Oficial UNAB 2026")}</span></div>
+          <div class="p-4 bg-slate-50 border-b border-slate-200 space-y-1.5">
+            <div><span class="text-slate-500 font-bold">De:</span> <span class="text-slate-900 font-semibold">${escapeHtml(sender)} &lt;comunicacion@unab.edu.sv&gt;</span></div>
+            <div><span class="text-slate-500 font-bold">Para:</span> <span class="text-slate-700">estudiantes.${state.selectedCampus.toLowerCase().replace(/[^a-z]/g, '')}@unab.edu.sv</span></div>
+            <div><span class="text-slate-500 font-bold">Asunto:</span> <span class="text-blue-700 font-bold">${escapeHtml(subjectInterpolated || "Diagnóstico Oficial UNAB 2026")}</span></div>
           </div>
           <!-- Email Body -->
-          <div class="p-6 bg-slate-900 leading-relaxed whitespace-pre-wrap text-slate-300">
+          <div class="p-6 bg-white leading-relaxed whitespace-pre-wrap text-slate-700">
             ${escapeHtml(textInterpolated)}
           </div>
         </div>
       `;
-    } else if (state.activeMockupTab === "instagram") {
+    } else if (state.activeMockupTab === "poster") {
+      // Afiche Promocional con Código QR Integrado
       container.innerHTML = `
-        <div class="max-w-sm mx-auto bg-slate-950 text-slate-100 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl text-xs">
+        <div class="max-w-md mx-auto bg-white text-slate-900 rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl flex flex-col">
+          <!-- Poster Top Header -->
+          <div class="bg-blue-800 text-white px-5 py-4 flex items-center justify-between border-b-4 border-amber-400">
+            <div class="flex items-center gap-3">
+              <img src="assets/logo_unab.png" alt="UNAB" class="h-9 w-auto bg-white p-1 rounded-lg">
+              <div>
+                <div class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300">Universidad Dr. Andrés Bello</div>
+                <div class="text-xs font-bold text-slate-100">Vicerrectoría Académica • Investigaciones</div>
+              </div>
+            </div>
+            <span class="text-[10px] bg-white/20 text-white font-bold px-2 py-0.5 rounded-full">2026</span>
+          </div>
+
+          <!-- Poster Body -->
+          <div class="p-6 text-center space-y-4 bg-gradient-to-b from-blue-50/40 via-white to-slate-50">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-[10px] font-black uppercase tracking-wider mb-2">
+                Diagnóstico Oficial Estudiantil
+              </span>
+              <h4 class="text-lg font-black text-slate-900 leading-tight">
+                ¿Lo que estás aprendiendo te prepara para el empleo que quieres?
+              </h4>
+              <p class="text-xs text-slate-600 mt-1">
+                Participa en la evaluación sobre <strong class="text-blue-800">Utilidad Curricular y Retorno Académico</strong> en la ${escapeHtml(state.selectedFaculty)}.
+              </p>
+            </div>
+
+            <!-- Official Giant QR Code -->
+            <div class="p-4 bg-white rounded-2xl shadow-lg border-2 border-blue-600 inline-block mx-auto">
+              <img src="assets/QR_UNAB_ROI_Academico.png" alt="Código QR Oficial" class="w-48 h-48 sm:w-52 sm:h-52 object-contain mx-auto">
+              <div class="text-[10px] font-extrabold text-blue-800 uppercase tracking-wider mt-2">
+                📷 Apunta la cámara de tu celular
+              </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="grid grid-cols-3 gap-2 text-left bg-slate-100/80 p-3 rounded-xl border border-slate-200 text-[10px] text-slate-700">
+              <div>
+                <div class="font-black text-slate-900">🔒 100%</div>
+                <div>Anónimo y seguro</div>
+              </div>
+              <div>
+                <div class="font-black text-slate-900">⏱️ 3 a 5 min</div>
+                <div>Duración real</div>
+              </div>
+              <div>
+                <div class="font-black text-slate-900">📜 Sello</div>
+                <div>Constancia digital</div>
+              </div>
+            </div>
+
+            <!-- Short Link -->
+            <div class="text-xs text-slate-500">
+              O ingresa directamente:  
+              <a href="https://tinyurl.com/roi-academico-unabsv" target="_blank" class="font-mono text-blue-700 font-bold block sm:inline hover:underline select-all">
+                tinyurl.com/roi-academico-unabsv
+              </a>
+            </div>
+
+            <!-- Download Action Buttons -->
+            <div class="flex flex-wrap gap-2 justify-center pt-2 border-t border-slate-200">
+              <a href="assets/QR_UNAB_ROI_Academico.png" download="Afiche_QR_UNAB.png" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer">
+                <span>⬇️</span> Descargar PNG
+              </a>
+              <a href="assets/QR_UNAB_ROI_Academico.svg" download="Afiche_QR_UNAB.svg" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold text-xs transition flex items-center gap-1 cursor-pointer">
+                <span>⬇️</span> Descargar SVG
+              </a>
+            </div>
+          </div>
+
+          <!-- Poster Footer -->
+          <div class="bg-slate-100 px-4 py-2 text-center text-[10px] text-slate-500 border-t border-slate-200">
+            Universidad Dr. Andrés Bello • Instrumento Psicométrico Institucional
+          </div>
+        </div>
+      `;
+    } else if (state.activeMockupTab === "instagram") {
+      // Instagram Post en Modo Claro
+      container.innerHTML = `
+        <div class="max-w-sm mx-auto bg-white text-slate-900 rounded-2xl overflow-hidden border border-slate-300 shadow-xl text-xs">
           <!-- Instagram Header -->
-          <div class="p-3 flex items-center justify-between border-b border-slate-800">
+          <div class="p-3 flex items-center justify-between border-b border-slate-200">
             <div class="flex items-center gap-2.5">
               <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500 p-0.5">
-                <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center font-bold text-xs">
+                <div class="w-full h-full bg-white rounded-full flex items-center justify-center font-bold text-xs">
                   🦅
                 </div>
               </div>
               <div>
-                <div class="font-bold text-slate-200 text-xs">unab_elsalvador</div>
-                <div class="text-[10px] text-slate-400">${state.selectedCampus}</div>
+                <div class="font-bold text-slate-900 text-xs">unab_elsalvador</div>
+                <div class="text-[10px] text-slate-500">${state.selectedCampus}</div>
               </div>
             </div>
             <span class="text-slate-400">⋯</span>
           </div>
           <!-- Instagram Simulated Media -->
-          <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-amber-950/40 p-6 flex flex-col items-center justify-center text-center border-y border-slate-800 min-h-[200px]">
-            <div class="text-2xl mb-2">📊🏛️</div>
-            <div class="font-extrabold text-amber-300 text-sm mb-1">${escapeHtml(speech.title)}</div>
-            <div class="text-[11px] text-slate-300 max-w-[220px]">Tu voz transforma los planes de estudio en la UNAB</div>
-            <div class="mt-3 px-3 py-1 rounded-full bg-amber-500 text-slate-950 font-bold text-[10px]">
+          <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 text-white p-6 flex flex-col items-center justify-center text-center min-h-[200px]">
+            <div class="text-2xl mb-1.5">📊🏛️</div>
+            <div class="font-black text-amber-300 text-sm mb-1">${escapeHtml(speech.title)}</div>
+            <div class="text-[11px] text-blue-100 max-w-[220px]">Tu voz transforma los planes de estudio en la UNAB</div>
+            <div class="mt-3 px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-[10px]">
               Enlace en Biografía 🔗
             </div>
           </div>
           <!-- Instagram Caption -->
           <div class="p-3 space-y-1.5">
-            <div class="flex items-center gap-3 text-sm text-slate-300 pb-1">
+            <div class="flex items-center gap-3 text-sm text-slate-600 pb-1">
               <span>❤️</span> <span>💬</span> <span>↗️</span>
             </div>
             <div class="leading-relaxed">
-              <span class="font-bold text-slate-200">unab_elsalvador</span>
-              <span class="text-slate-300 whitespace-pre-wrap"> ${escapeHtml(textInterpolated.substring(0, 240))}...</span>
+              <span class="font-bold text-slate-900">unab_elsalvador</span>
+              <span class="text-slate-700 whitespace-pre-wrap"> ${escapeHtml(textInterpolated.substring(0, 240))}...</span>
             </div>
-            <div class="text-[10px] text-slate-500 uppercase mt-1">Hace 15 minutos</div>
+            <div class="text-[10px] text-slate-400 uppercase mt-1">Hace 15 minutos</div>
           </div>
         </div>
       `;
@@ -540,7 +632,7 @@
     pauseTimer();
   }
 
-  // Controlador de Temporizador para Aula
+  // Controlador de Temporizador para Aula (4 Minutos = 240s)
   function initTimerControls() {
     var btnToggle = document.getElementById("pres-timer-toggle");
     var btnReset = document.getElementById("pres-timer-reset");
@@ -574,7 +666,7 @@
         var display = document.getElementById("pres-timer-display");
         if (display) {
           display.textContent = "00:00 - ¡Tiempo!";
-          display.classList.add("text-rose-400");
+          display.classList.add("text-rose-600");
         }
         showToast("¡Tiempo completado! Agradece a los estudiantes por su participación.");
       }
@@ -592,10 +684,10 @@
 
   function resetTimer() {
     pauseTimer();
-    state.timerSeconds = 180; // 3 minutos
+    state.timerSeconds = 240; // 4 minutos (en rango 3-5 min)
     renderTimerDisplay();
     var display = document.getElementById("pres-timer-display");
-    if (display) display.classList.remove("text-rose-400");
+    if (display) display.classList.remove("text-rose-600");
   }
 
   function renderTimerDisplay() {
@@ -611,10 +703,10 @@
     if (!btn) return;
     if (state.timerRunning) {
       btn.innerHTML = "<span>⏸️</span> Pausar";
-      btn.className = "px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition shadow";
+      btn.className = "px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition shadow-sm cursor-pointer";
     } else {
-      btn.innerHTML = "<span>▶️</span> Iniciar 3 Minutos";
-      btn.className = "px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition shadow";
+      btn.innerHTML = "<span>▶️</span> Iniciar Tiempo";
+      btn.className = "px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm cursor-pointer";
     }
   }
 

@@ -1,8 +1,8 @@
 # Informe Canónico de Auditoría Forense Atómica y Cero Complacencia
 > **Proyecto Auditado**: `despliegue`  
 > **Ruta Absoluta**: `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue`  
-> **Modelo Evaluador Local**: `Modo Estático Offline (Ollama omitido)`  
-> **Fecha de Ejecución**: `2026-11-12T03:07:34.600688Z`  
+> **Modelo Evaluador Local**: `qwen3.8:27b`  
+> **Fecha de Ejecución**: `2026-11-12T07:19:20.579157Z`  
 > **Directriz Rectora**: Principio de Existencia Funcional Binaria y Convergencia de Punto Fijo. Cero tolerancia a stubs o simulaciones.
 
 ---
@@ -22,13 +22,13 @@
 
 ## 🗺️ 2. Métricas del Grafo de Dependencias Auditadas
 
-- **Archivos de Código Analizados**: `7`
+- **Archivos de Código Analizados**: `8`
 - **Llamadas RPC / API en Frontend**: `0`
-- **Funciones y Endpoints en Backend**: `15`
-- **Identificadores DOM Declarados**: `39`
+- **Funciones y Endpoints en Backend**: `19`
+- **Identificadores DOM Declarados**: `40`
 - **Consultas a Elementos del DOM (`getElementById`)**: `29`
-- **Botones y Acciones Interactivas**: `22`
-- **Inyecciones `.innerHTML` Auditadas**: `12`
+- **Botones y Acciones Interactivas**: `25`
+- **Inyecciones `.innerHTML` Auditadas**: `13`
 - **Manejadores de Bloqueos (`LockService` / Mutex)**: `0`
 - **Pases de Re-inspección hasta Punto Fijo**: `2`
 
@@ -41,11 +41,11 @@
 ---
 
 ## 🌲 4. Diagnóstico Anatómico Bonsái: Índice de Vitalidad y Propuesta de Poda
-- **Fase de Madurez del Proyecto**: `STAGE_PROD`
-- **Índice de Vitalidad Promedio**: `58.4%`
-- **Total Nodos Evaluados**: `18`
+- **Fase de Madurez del Proyecto**: `STAGE_DEV`
+- **Índice de Vitalidad Promedio**: `75.0%`
+- **Total Nodos Evaluados**: `22`
 - **Ramas Sanas & Protegidas**: `0`
-- **Ramas en Incubación (Pre-Producción)**: `16`
+- **Ramas en Incubación (Pre-Producción)**: `22`
 - **Candidatos a Corte Radial (Ramas Secas)**: `0`
 - **Código Zombi Detectado**: `0`
 - **Ramas Requiriendo Alambrado/Refactor**: `0`
@@ -53,24 +53,26 @@
 ### Matriz Detallada de Elementos Clave y Vitalidad
 | Elemento (FQN) | Tipo | Vitalidad | Diagnóstico Bonsái | Acción Recomendada |
 | :--- | :--- | :--- | :--- | :--- |
-| `DespliegueHandler` | class | **65.0%** | INCUBACION | INCUBACION |
-| `__init__` | method | **6.0%** | ESTRATEGICA | PODA_ESTRATEGICA |
-| `end_headers` | method | **6.0%** | ESTRATEGICA | PODA_ESTRATEGICA |
-| `run_server` | function | **65.0%** | INCUBACION | INCUBACION |
-| `TestDespliegueE2E` | class | **65.0%** | INCUBACION | INCUBACION |
-| `setUpClass` | method | **65.0%** | INCUBACION | INCUBACION |
-| `tearDownClass` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_01_desktop_full_interactions` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_02_mobile_pixel7_responsiveness` | method | **65.0%** | INCUBACION | INCUBACION |
-| `TestDespliegueIntegrity` | class | **65.0%** | INCUBACION | INCUBACION |
-| `setUp` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_01_assets_exist_and_valid` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_02_speeches_catalog_structure` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_03_all_perspectives_covered` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_04_all_channels_covered` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_05_no_unresolved_placeholders` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_06_index_html_contracts` | method | **65.0%** | INCUBACION | INCUBACION |
-| `test_07_app_js_security_and_clipboard` | method | **65.0%** | INCUBACION | INCUBACION |
+| `create_or_verify_repo` | function | **75.0%** | INCUBACION | INCUBACION |
+| `push_git` | function | **75.0%** | INCUBACION | INCUBACION |
+| `enable_pages` | function | **75.0%** | INCUBACION | INCUBACION |
+| `poll_build` | function | **75.0%** | INCUBACION | INCUBACION |
+| `DespliegueHandler` | class | **75.0%** | INCUBACION | INCUBACION |
+| `__init__` | method | **75.0%** | INCUBACION | INCUBACION |
+| `end_headers` | method | **75.0%** | INCUBACION | INCUBACION |
+| `run_server` | function | **75.0%** | INCUBACION | INCUBACION |
+| `TestDespliegueE2E` | class | **75.0%** | INCUBACION | INCUBACION |
+| `setUpClass` | method | **75.0%** | INCUBACION | INCUBACION |
+| `tearDownClass` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_01_desktop_full_interactions` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_02_mobile_pixel7_responsiveness` | method | **75.0%** | INCUBACION | INCUBACION |
+| `TestDespliegueIntegrity` | class | **75.0%** | INCUBACION | INCUBACION |
+| `setUp` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_01_assets_exist_and_valid` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_02_speeches_catalog_structure` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_03_all_perspectives_covered` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_04_all_channels_covered` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_05_no_unresolved_placeholders` | method | **75.0%** | INCUBACION | INCUBACION |
 
 > [!TIP]
 > Para explorar visualmente el Heatmap/Treemap completo y confirmar podas quirúrgicas en vivo, ejecute:

@@ -8,7 +8,7 @@
  * {facultad} -> Nombre de la Facultad seleccionada
  * {sede}     -> Sede universitaria (San Salvador, Sonsonate, etc.)
  * {link}     -> URL canónica según el modo activo (TinyURL o UTM)
- * {tiempo}   -> Estimación de tiempo de respuesta (2m 15s)
+ * {tiempo}   -> Estimación de tiempo de respuesta (3 a 5 minutos)
  */
 
 window.UNAB_SPEECHES = [
@@ -162,20 +162,20 @@ Comité de Investigación y Vicerrectoría Académica UNAB`
     perspectiveLabel: "👨‍🏫 Docente a Estudiante",
     channel: "speech",
     channelLabel: "🗣️ Speech Oral en Aula (60-90s)",
-    title: "Guion Oral en Vivo: Pausa Activa de 3 Minutos en Clase",
-    context: "Para ser leído o parafraseado por el docente al inicio o cierre de la clase, proyectando el QR en pantalla y dando 3 minutos en silencio para que todos respondan.",
+    title: "Guion Oral en Vivo: Pausa Activa de 3 a 5 Minutos en Clase",
+    context: "Para ser leído o parafraseado por el docente al inicio o cierre de la clase, proyectando el QR en pantalla y dando de 3 a 5 minutos en silencio para que todos respondan.",
     readingTime: "1m 10s",
     words: 160,
     subject: "Guion Verbal para Salón de Clases Presencial / Virtual",
     body: `(El docente proyecta en pantalla la diapositiva con el QR y se dirige al grupo):
 
-"Buenos días / tardes, jóvenes de la {facultad}. Les pido dos minutos de su atención antes de iniciar formalmente la clase de hoy.
+"Buenos días / tardes, jóvenes de la {facultad}. Les pido unos breves minutos de su atención antes de iniciar formalmente la clase de hoy.
 
 Como docentes, nos interesa profundamente que cada hora que pasan en esta aula y cada materia de la carrera realmente les abra puertas cuando salgan a buscar empleo o emprender. La universidad está realizando un estudio de investigación formal para evaluar exactamente eso: qué tan útiles perciben los contenidos de su carrera y cuáles son sus expectativas reales de trabajo.
 
 La encuesta es totalmente anónima, no les pide su nombre ni su carné, y está avalada por el Comité de Ética. 
 
-He puesto en la pantalla el código QR y también les envié el enlace al grupo de WhatsApp. Vamos a tomarnos exactamente 3 minutos en este momento para que todos saquemos el teléfono y la completemos juntos. Quien termine verá en su pantalla su constancia digital.
+He puesto en la pantalla el código QR y también les envié el enlace al grupo de WhatsApp. Vamos a tomarnos de 3 a 5 minutos en este momento para que todos saquemos el teléfono y la completemos juntos. Quien termine verá en su pantalla su constancia digital.
 
 Por favor, ingresen en: {link} o escaneen el QR en pantalla. Empecemos ahora."`
   },
@@ -276,7 +276,7 @@ Enlace de acceso:
 
 Bueno, justo ahorita la UNAB sacó una encuesta oficial que SÍ van a tomar en cuenta para actualizar los planes de estudio y ver qué tan útil sentimos la carrera frente a los salarios reales.
 
-No pide carné ni correo, es 100% anónima y no quita ni 3 minutos (literal {tiempo}). 
+No pide carné ni correo, es 100% anónima y toma entre 3 a 5 minutos (literal {tiempo}). 
 
 Hagámonos escuchar de verdad con datos duros:
 👉 {link}
@@ -290,15 +290,15 @@ Llévenla antes de que se les olvide, entre más seamos más presión hay para q
     channel: "speech",
     channelLabel: "🗣️ Speech Oral en Aula (60-90s)",
     title: "Intervención de Delegado Estudiantil en Cambio de Hora",
-    context: "Para que un estudiante líder o representante de la Asociación Estudiantil hable 1 minuto frente a sus compañeros entre clases.",
+    context: "Para que un estudiante líder o representante de la Asociación Estudiantil hable frente a sus compañeros entre clases.",
     readingTime: "50s",
     words: 120,
     subject: "Guion de Delegado o Representante Estudiantil",
-    body: `"Qué onda compañeros, solo les robo un minuto antes de que llegue el siguiente licenciado.
+    body: `"Qué onda compañeros, solo les robo un par de minutos antes de que llegue el siguiente licenciado.
 
 Siempre nos estamos quejando en los pasillos de que hay materias con demasiada teoría, de que los laboratorios necesitan actualización o de que cuando salgamos a trabajar no sabemos si nos van a pagar bien. Pues miren: ahorita hay una encuesta de investigación oficial abierta exactamente para eso.
 
-Si no la llenamos, luego no tenemos derecho a quejarnos de que nadie nos escucha. No les pide nombre, es completamente anónima y toma menos de 3 minutos.
+Si no la llenamos, luego no tenemos derecho a quejarnos de que nadie nos escucha. No les pide nombre, es completamente anónima y toma entre 3 a 5 minutos.
 
 Les acabo de reenviar el link al grupo de WhatsApp del salón. Por favor ábranlo ahorita mismo mientras esperamos clase: {link}.
 
@@ -318,7 +318,7 @@ Demostremos que a los estudiantes de {facultad} sí nos importa el futuro de nue
     body: `Gente de la UNAB 🦅
 ¿Sienten que la U de verdad los está preparando para el mercado laboral actual? 🤔
 
-Abrieron una encuesta oficial 100% ANÓNIMA para evaluar exactamente eso. Solo toma 2 minutos y te da constancia con comprobante al final 📜✨
+Abrieron una encuesta oficial 100% ANÓNIMA para evaluar exactamente eso. Solo toma de 3 a 5 minutos y te da constancia con comprobante al final 📜✨
 
 Haz valer tu opinión aquí 👇
 [STICKER DE ENLACE: {link}]

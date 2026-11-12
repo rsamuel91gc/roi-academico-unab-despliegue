@@ -109,6 +109,7 @@ class TestDespliegueIntegrity(unittest.TestCase):
             'id="search-speeches"',
             'id="speeches-container"',
             'id="mockup-modal"',
+            'id="btn-tab-poster"',
             'id="presentation-modal"',
             'id="toast-notification"',
             'id="pres-timer-display"'
@@ -130,6 +131,7 @@ class TestDespliegueIntegrity(unittest.TestCase):
         self.assertIn("openPresentationMode", js, "Falta Modo Proyección en app.js")
         self.assertIn("openMockupModal", js, "Falta Modo Mockup en app.js")
         self.assertIn("tinyurl.com/roi-academico-unabsv", js, "Falta URL corta canónica en app.js")
+        self.assertIn("3 a 5 minutos", js, "Falta calibración de duración a 3 a 5 minutos en app.js")
 
 
 if __name__ == "__main__":

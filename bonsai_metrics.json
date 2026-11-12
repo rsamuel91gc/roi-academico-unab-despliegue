@@ -1,18 +1,86 @@
 {
   "project_name": "despliegue",
   "project_dir": "C:\\Users\\Samuel Garcia\\.gemini\\antigravity\\scratch\\despliegue",
-  "analyzed_at": "2026-11-12T03:07:34.599688+00:00",
-  "stage": "STAGE_PROD",
+  "analyzed_at": "2026-11-12T07:19:20.576157+00:00",
+  "stage": "STAGE_DEV",
   "summary": {
-    "total_nodes": 18,
-    "avg_vitality": 58.4,
+    "total_nodes": 22,
+    "avg_vitality": 75.0,
     "healthy_count": 0,
-    "incubating_count": 16,
+    "incubating_count": 22,
     "radial_cuts": 0,
     "zombi_prunes": 0,
     "rewire_needed": 0
   },
   "nodes": [
+    {
+      "name": "create_or_verify_repo",
+      "fqn": "deploy_despliegue_github_pages.py::create_or_verify_repo",
+      "type": "function",
+      "file": "deploy_despliegue_github_pages.py",
+      "start_line": 29,
+      "end_line": 52,
+      "complexity": 5,
+      "in_degree": 0,
+      "age_days": 0,
+      "has_keep": false,
+      "is_entrypoint": false,
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
+    },
+    {
+      "name": "push_git",
+      "fqn": "deploy_despliegue_github_pages.py::push_git",
+      "type": "function",
+      "file": "deploy_despliegue_github_pages.py",
+      "start_line": 54,
+      "end_line": 76,
+      "complexity": 2,
+      "in_degree": 0,
+      "age_days": 0,
+      "has_keep": false,
+      "is_entrypoint": false,
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
+    },
+    {
+      "name": "enable_pages",
+      "fqn": "deploy_despliegue_github_pages.py::enable_pages",
+      "type": "function",
+      "file": "deploy_despliegue_github_pages.py",
+      "start_line": 78,
+      "end_line": 108,
+      "complexity": 6,
+      "in_degree": 0,
+      "age_days": 0,
+      "has_keep": false,
+      "is_entrypoint": false,
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
+    },
+    {
+      "name": "poll_build",
+      "fqn": "deploy_despliegue_github_pages.py::poll_build",
+      "type": "function",
+      "file": "deploy_despliegue_github_pages.py",
+      "start_line": 110,
+      "end_line": 129,
+      "complexity": 6,
+      "in_degree": 0,
+      "age_days": 0,
+      "has_keep": false,
+      "is_entrypoint": false,
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
+    },
     {
       "name": "DespliegueHandler",
       "fqn": "serve_despliegue.py::DespliegueHandler",
@@ -25,10 +93,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "__init__",
@@ -42,10 +110,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 6.0,
-      "action": "PODA_ESTRATEGICA",
-      "category": "estrategica",
-      "status_desc": "Poda Estratégica: Bajo impacto operativo frente a coste de mantenimiento"
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "end_headers",
@@ -59,10 +127,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 6.0,
-      "action": "PODA_ESTRATEGICA",
-      "category": "estrategica",
-      "status_desc": "Poda Estratégica: Bajo impacto operativo frente a coste de mantenimiento"
+      "vitality": 75.0,
+      "action": "INCUBACION",
+      "category": "incubacion",
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "run_server",
@@ -76,95 +144,95 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "TestDespliegueE2E",
       "fqn": "tests/test_despliegue_e2e_playwright.py::TestDespliegueE2E",
       "type": "class",
       "file": "tests/test_despliegue_e2e_playwright.py",
-      "start_line": 25,
-      "end_line": 145,
+      "start_line": 26,
+      "end_line": 180,
       "complexity": 1,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "setUpClass",
       "fqn": "tests/test_despliegue_e2e_playwright.py::TestDespliegueE2E.setUpClass",
       "type": "method",
       "file": "tests/test_despliegue_e2e_playwright.py",
-      "start_line": 30,
-      "end_line": 35,
+      "start_line": 31,
+      "end_line": 36,
       "complexity": 1,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "tearDownClass",
       "fqn": "tests/test_despliegue_e2e_playwright.py::TestDespliegueE2E.tearDownClass",
       "type": "method",
       "file": "tests/test_despliegue_e2e_playwright.py",
-      "start_line": 38,
-      "end_line": 41,
+      "start_line": 39,
+      "end_line": 42,
       "complexity": 2,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_01_desktop_full_interactions",
       "fqn": "tests/test_despliegue_e2e_playwright.py::TestDespliegueE2E.test_01_desktop_full_interactions",
       "type": "method",
       "file": "tests/test_despliegue_e2e_playwright.py",
-      "start_line": 43,
-      "end_line": 120,
+      "start_line": 44,
+      "end_line": 155,
       "complexity": 2,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_02_mobile_pixel7_responsiveness",
       "fqn": "tests/test_despliegue_e2e_playwright.py::TestDespliegueE2E.test_02_mobile_pixel7_responsiveness",
       "type": "method",
       "file": "tests/test_despliegue_e2e_playwright.py",
-      "start_line": 122,
-      "end_line": 145,
+      "start_line": 157,
+      "end_line": 180,
       "complexity": 2,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "TestDespliegueIntegrity",
@@ -172,16 +240,16 @@
       "type": "class",
       "file": "tests/test_despliegue_integrity.py",
       "start_line": 19,
-      "end_line": 132,
+      "end_line": 134,
       "complexity": 1,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "setUp",
@@ -195,10 +263,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_01_assets_exist_and_valid",
@@ -212,10 +280,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_02_speeches_catalog_structure",
@@ -229,10 +297,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_03_all_perspectives_covered",
@@ -246,10 +314,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_04_all_channels_covered",
@@ -263,10 +331,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_05_no_unresolved_placeholders",
@@ -280,10 +348,10 @@
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_06_index_html_contracts",
@@ -291,33 +359,33 @@
       "type": "method",
       "file": "tests/test_despliegue_integrity.py",
       "start_line": 98,
-      "end_line": 120,
+      "end_line": 121,
       "complexity": 3,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     },
     {
       "name": "test_07_app_js_security_and_clipboard",
       "fqn": "tests/test_despliegue_integrity.py::TestDespliegueIntegrity.test_07_app_js_security_and_clipboard",
       "type": "method",
       "file": "tests/test_despliegue_integrity.py",
-      "start_line": 122,
-      "end_line": 132,
+      "start_line": 123,
+      "end_line": 134,
       "complexity": 2,
       "in_degree": 0,
       "age_days": 0,
       "has_keep": false,
       "is_entrypoint": false,
-      "vitality": 65.0,
+      "vitality": 75.0,
       "action": "INCUBACION",
       "category": "incubacion",
-      "status_desc": "Rama Joven: Sin llamadas aún pero editada recientemente"
+      "status_desc": "Feature en Desarrollo Activo (< 30 días o Punto de Entrada)"
     }
   ]
 }
