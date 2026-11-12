@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/__pycache__/
+deploy_despliegue_github_pages.py
+deploy_*.py
