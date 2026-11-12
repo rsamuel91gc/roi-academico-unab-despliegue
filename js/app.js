@@ -716,8 +716,11 @@
 
             <!-- Download Action Buttons -->
             <div class="flex flex-wrap gap-2 justify-center pt-2 border-t border-slate-200">
-              <a href="assets/Afiche_Promocional_UNAB_ROI.pdf" download="Afiche_Promocional_UNAB_ROI.pdf" class="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer" title="Descargar Afiche Oficial en PDF A4 Imprimible">
-                <span>📄</span> Descargar PDF (A4 Imprimible)
+              <a href="assets/Afiche_Promocional_UNAB_ROI_Carta.pdf" download="Afiche_Promocional_UNAB_ROI_Carta.pdf" class="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer" title="Descargar Afiche Oficial en PDF Tamaño Carta (8.5x11 pulgadas - 1 Página)">
+                <span>📄</span> Descargar PDF (Carta - 1 Pág)
+              </a>
+              <a href="assets/Afiche_Promocional_UNAB_ROI_4x6.pdf" download="Afiche_Promocional_UNAB_ROI_4x6.pdf" class="px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer" title="Descargar Volante de Mano en PDF 4x6 Pulgadas (1 Página)">
+                <span>📄</span> Descargar PDF (4x6" Postal)
               </a>
               <a href="assets/QR_UNAB_ROI_Academico.png" download="Afiche_QR_UNAB.png" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition flex items-center gap-1 cursor-pointer">
                 <span>⬇️</span> Descargar PNG

@@ -187,3 +187,46 @@
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_presentation_5min_live.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mobile_pixel7.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
+
+
+---
+
+### Entrada Correlativa #[005]
+**Fecha y Hora:** 2026-11-12T10:28:00-06:00  
+**Contexto de Conversación:** `conversation://296c85dc-ae26-4ca7-bcbf-48af09f4f178`  
+**Objetivo de Fase:** Incorporación de Reescritura IA Serverless con Gemini Engine, Modo General en Facultades/Sedes, Discurso Universal Entre Pares, Erradicación de Frase 'Les recordamos', Afiche Vectorial A4 Imprimible en PDF y Botón de Descarga Directa.
+
+#### [OPERACIÓN]
+1. **Reescritura Dinámica con IA Serverless sin Exposición de Credenciales**:
+   - Se implementó `window.rewriteSpeechWithAI(speechId)` en `despliegue/js/app.js` conectado a `CANONICAL_GAS_URL + "?action=rewrite_speech"`, utilizando de forma serverless y transparente la clave `GEMINI_API_KEY` configurada en el backend de Google Apps Script.
+   - Se añadió botón `✨ Redacción IA` en cada tarjeta de discurso que permite variar la redacción cuantas veces sea necesario hasta agradar al usuario, junto con botón `↩️` de restauración al texto original.
+   - Se dotó al frontend de generador estilístico determinista heurístico local en caso de desconexión o latencia prolongada.
+2. **Modo General y Mensajes Universales Estudiante a Estudiante**:
+   - En `despliegue/js/speeches_data.js` se incorporó la opción `"General (Todas las Sedes UNAB)"` en `window.UNAB_CAMPUSES` y `"General (Toda la Universidad UNAB / Cualquier Carrera)"` en `window.UNAB_FACULTADES`.
+   - Se incorporó el discurso canónico universal `peer-whatsapp-universal` (`¡Hola compañeros! 👋🦅`) diseñado específicamente para compartirse de alumno a alumno sin requerir especificar facultad ni sede.
+   - Se purificó el motor de interpolación `interpolateText()` en `despliegue/js/app.js` para reemplazar limpiamente frases redundantes como `de la Facultad de ... (Sede ...)` por expresiones integradoras (`de la comunidad universitaria UNAB`).
+3. **Erradicación de Inconsistencias Fácticas de Primer Contacto**:
+   - En el reactivo `comite-whatsapp-datos` se erradicó la frase `"Les recordamos la importancia de sumar su perspectiva..."`, reemplazándola por `"Extendemos una cordial invitación a sumar su perspectiva a la muestra estadística de su carrera..."`.
+4. **Afiche Promocional Oficial en PDF A4 Imprimible**:
+   - Mediante Playwright headless Chromium (`generate_pdf_poster.py`) se generó el artefacto canónico `assets/Afiche_Promocional_UNAB_ROI.pdf` (444,609 bytes) en formato vectorial A4 con especificación de 300 DPI para imprenta oficial.
+   - En el modal de previsualización (pestaña Afiche con QR) se integró el botón `📄 Descargar PDF (A4 Imprimible)` para descarga inmediata.
+5. **Testing Automatizado y Despliegue en Producción**:
+   - Ejecución de 12 de 12 pruebas unitarias y E2E Playwright en verde (`test_despliegue_integrity.py` y `test_despliegue_e2e_playwright.py`).
+   - Sincronización git y despliegue a GitHub Pages en `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/` con estado HTTP 200 OK verificado.
+
+#### [VALIDACIÓN]
+- `unittest discover -s tests`: 12 pruebas ejecutadas, 0 errores, 0 fallos (OK).
+- Descarga directa verificada: `assets/Afiche_Promocional_UNAB_ROI.pdf` (444 KB).
+- Producción en vivo verificada: HTTP 200 OK en `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`.
+- Capturas gráficas en vivo almacenadas en el directorio de artefactos.
+
+#### [ARTEFACTOS]
+- `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`
+- `https://github.com/rsamuel91gc/roi-academico-unab-despliegue`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI.pdf`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\js\speeches_data.js`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\js\app.js`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\generate_pdf_poster.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_production_live.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mockup_poster_live.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`

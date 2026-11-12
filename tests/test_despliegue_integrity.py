@@ -22,17 +22,39 @@ class TestDespliegueIntegrity(unittest.TestCase):
         self.assertTrue(os.path.exists(BASE_DIR), f"Directorio base no encontrado: {BASE_DIR}")
 
     def test_01_assets_exist_and_valid(self):
-        """Verifica que los assets vectoriales y gráficos existan y tengan tamaño mayor a 10KB"""
+        """Verifica que los assets vectoriales, gráficos y PDFs existan y tengan tamaño mayor a 10KB"""
         required_assets = [
             "QR_UNAB_ROI_Academico.svg",
             "QR_UNAB_ROI_Academico.png",
-            "logo_unab.png"
+            "logo_unab.png",
+            "Afiche_Promocional_UNAB_ROI.pdf",
+            "Afiche_Promocional_UNAB_ROI_Carta.pdf",
+            "Afiche_Promocional_UNAB_ROI_4x6.pdf"
         ]
         for asset in required_assets:
             path = os.path.join(ASSETS_DIR, asset)
             self.assertTrue(os.path.exists(path), f"Asset faltante: {asset}")
             size = os.path.getsize(path)
             self.assertGreater(size, 10240, f"Asset {asset} es demasiado pequeño ({size} bytes)")
+
+    def test_01b_pdf_posters_single_page_strict(self):
+        """Verifica estrictamente que los afiches PDF (Carta y 4x6 pulgadas) tengan EXACTAMENTE 1 PÁGINA"""
+        import pypdf
+        posters_to_verify = [
+            ("Afiche_Promocional_UNAB_ROI.pdf", 1),
+            ("Afiche_Promocional_UNAB_ROI_Carta.pdf", 1),
+            ("Afiche_Promocional_UNAB_ROI_4x6.pdf", 1)
+        ]
+        for filename, expected_pages in posters_to_verify:
+            path = os.path.join(ASSETS_DIR, filename)
+            self.assertTrue(os.path.exists(path), f"No existe el archivo {filename}")
+            reader = pypdf.PdfReader(path)
+            actual_pages = len(reader.pages)
+            self.assertEqual(
+                actual_pages,
+                expected_pages,
+                f"El archivo {filename} tiene {actual_pages} páginas, se esperaba exactamente {expected_pages} página"
+            )
 
     def test_02_speeches_catalog_structure(self):
         """Verifica que el catálogo de discursos contenga al menos 20 discursos completos y estructurados"""
