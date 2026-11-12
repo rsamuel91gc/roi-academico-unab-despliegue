@@ -230,3 +230,51 @@
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_production_live.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_despliegue_mockup_poster_live.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
+
+
+---
+
+### Entrada Correlativa #[006]
+- **Fecha y Hora**: 2026-11-12T11:11:00-06:00
+- **Contexto Operativo**: Reconfiguración del afiche promocional a tamaño Carta (US Letter) y creación del formato volante/postal de 4x6 pulgadas con restricción estricta de 1 sola página.
+- **Solicitud del Usuario**: "El afiche se pasa a una segunda pagina, mejor configuralo en tamaño carta, ayuda a hacer uno de 4x6 pulgadas" junto con evidencia visual del desbordamiento en 2 páginas.
+
+#### [OPERACIÓN]
+1. **Diagnóstico de Causa Raíz del Desbordamiento**:
+   - Se verificó que el archivo previo `Afiche_Promocional_UNAB_ROI.pdf` contenía 2 páginas debido a que la suma de paddings y márgenes verticales en A4 (297mm) empujaba el bloque del footer a una segunda página huérfana.
+2. **Reconfiguración a Tamaño Carta (US Letter: 8.5 x 11 pulgadas / 215.9 x 279.4 mm)**:
+   - Se rediseñó la hoja de estilos de impresión con `@page { size: letter portrait; margin: 0; }` y contenedor `.page-wrapper` con `width: 8.5in; height: 11in; max-height: 11in; overflow: hidden;`.
+   - Se optimizaron las proporciones verticales: cabecera degradada (50mm), caja intro (18mm), tarjeta QR blanca con código de 62x62mm (92mm), cuadrícula de 3 beneficios (28mm) y footer institucional oscuro (16mm). Total: ~216mm < 279.4mm, garantizando un margen de seguridad de 63mm.
+   - Generación de `Afiche_Promocional_UNAB_ROI.pdf` (436,421 bytes) y `Afiche_Promocional_UNAB_ROI_Carta.pdf`.
+3. **Creación del Formato Volante / Postal de 4x6 Pulgadas (101.6 x 152.4 mm)**:
+   - Se implementó un layout condensado de alta fidelidad para distribución mano a mano o impresión fotográfica con `@page { size: 4in 6in; margin: 0; }` y `overflow: hidden;`.
+   - Se adaptaron los elementos: cabecera institucional compacta, micro-callout de pertinencia, código QR nítido de 42x42mm con enlace corto `tinyurl.com/roi-academico-unabsv`, 3 micro-píldoras (100% Anónimo, 3-5 Minutos, Constancia) y pie de página UNAB 2026.
+   - Generación de `Afiche_Promocional_UNAB_ROI_4x6.pdf` (414,055 bytes) y render rasterizado de alta definición `Afiche_Promocional_UNAB_ROI_4x6.png` (258 KB).
+4. **Verificación Automatizada con `pypdf`**:
+   - Inclusión de aserciones en `generate_pdf_poster.py` y nuevo test `test_01b_pdf_posters_single_page_strict` en `tests/test_despliegue_integrity.py`.
+   - Validación comprobada: tanto el formato Carta como el 4x6" tienen **EXACTAMENTE 1 PÁGINA** (`len(pages) == 1`).
+5. **Integración UI y Despliegue en Producción**:
+   - Actualización de `index.html` (sección Material Gráfico) y `js/app.js` (modal de afiche) con botones de descarga dedicados para ambos formatos (Carta y 4x6").
+   - Ejecución de 13/13 pruebas unitarias y E2E en verde.
+   - Despliegue en GitHub Pages (`main 8b37afd`) y comprobación de estado HTTP 200 OK.
+
+#### [VALIDACIÓN]
+- `generate_pdf_poster.py`: Carta 1 pág (436,421 bytes), 4x6" 1 pág (414,055 bytes).
+- `pytest tests/`: 13 pasadas en 9.92s (100% éxito).
+- `test_01b_pdf_posters_single_page_strict`: PASSED.
+- Verificación visual con Playwright: capturas `verified_downloads_section.png`, `verified_poster_modal.png`, `verified_afiche_carta_preview.png` y `verified_afiche_4x6_preview.png`.
+- Producción GitHub Pages: HTTP 200 OK en `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`.
+
+#### [ARTEFACTOS]
+- `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_Carta.pdf`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_4x6.pdf`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_4x6.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_Carta.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\generate_pdf_poster.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\index.html`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\js\app.js`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\tests\test_despliegue_integrity.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_afiche_carta_preview.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_afiche_4x6_preview.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
