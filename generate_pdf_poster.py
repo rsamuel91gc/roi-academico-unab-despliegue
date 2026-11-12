@@ -256,7 +256,7 @@ html_carta = f"""<!DOCTYPE html>
     <div class="footer">
       <div>
         <div class="footer-brand">Universidad Dr. Andrés Bello • El Salvador</div>
-        <div>Dirección de Investigación y Proyección Social • San Salvador • Sonsonate • Chalatenango • San Miguel</div>
+        <div>San Salvador • Sonsonate • Chalatenango • San Miguel</div>
       </div>
       <div style="text-align: right; font-weight: 700; color: #f59e0b;">
         Ejercicio Académico 2026
@@ -479,7 +479,6 @@ html_4x6 = f"""<!DOCTYPE html>
     <div class="footer">
       <div>
         <div class="footer-brand">Universidad Dr. Andrés Bello • El Salvador</div>
-        <div>Dirección de Investigación y Proyección Social</div>
       </div>
       <div style="text-align: right; font-weight: 700; color: #f59e0b;">
         UNAB 2026

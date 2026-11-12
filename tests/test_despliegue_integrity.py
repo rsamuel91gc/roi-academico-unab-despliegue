@@ -159,22 +159,27 @@ class TestDespliegueIntegrity(unittest.TestCase):
         self.assertIn("3 a 5 minutos", js, "Falta calibración de duración a 3 a 5 minutos en app.js")
 
     def test_08_strict_factual_purity(self):
-        """Verifica la purificación fáctica estricta: cero menciones no autorizadas a vicerrectoría o comité de ética"""
+        """Verifica la purificación fáctica estricta: cero menciones no autorizadas a vicerrectoría, direcciones o autoría institucional no pedida"""
         with open(SPEECHES_PATH, "r", encoding="utf-8") as f:
             speeches_content = f.read()
         with open(INDEX_PATH, "r", encoding="utf-8") as f:
             html_content = f.read()
+        poster_script_path = os.path.join(BASE_DIR, "generate_pdf_poster.py")
+        with open(poster_script_path, "r", encoding="utf-8") as f:
+            poster_content = f.read()
 
         prohibited_terms = [
             "Comité de Ética",
             "Vicerrectoría Académica",
             "Dirección de Investigación",
+            "Proyección Social",
             "Qué onda",
             "[STICKER DE ENLACE]"
         ]
         for term in prohibited_terms:
             self.assertNotIn(term, speeches_content, f"Término no autorizado encontrado en speeches_data.js: '{term}'")
             self.assertNotIn(term, html_content, f"Término no autorizado encontrado en index.html: '{term}'")
+            self.assertNotIn(term, poster_content, f"Término no autorizado encontrado en generate_pdf_poster.py: '{term}'")
 
     def test_09_progressive_step_flow_structure(self):
         """Verifica que los pasos 2 y 3 comiencen ocultos mediante la clase hidden"""
