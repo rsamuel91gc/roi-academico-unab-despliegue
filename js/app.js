@@ -1,7 +1,8 @@
 /**
  * app.js - Controlador Lógico Reactivo y Gestor de Campaña Multicanal
  * Plataforma: roi-academico-unab-despliegue (Universidad Dr. Andrés Bello)
- * Estándar: Cero Mocks, Manejo de Estado en Caliente, Modo Presentación 16:9, Fondo Blanco Luminoso
+ * Estándar: Cero Mocks, Flujo Progresivo Condicional (1->2->3), Temporizador 5 min, Rigor Fáctico
+ * Autor: Roberto Samuel García Cerna • Universidad Dr. Andrés Bello
  */
 
 (function() {
@@ -18,27 +19,26 @@
     selectedCampus: "San Salvador (Sede Central)",
     senderName: "",
     linkMode: "tinyurl", // 'tinyurl' o 'utm'
-    activePerspective: "todas",
-    activeChannel: "todos",
+    activePerspective: null, // Inicia sin selección para flujo progresivo
+    activeChannel: null,     // Inicia sin selección para flujo progresivo
     searchQuery: "",
     activeMockupSpeech: null,
     activeMockupTab: "whatsapp",
     timerInterval: null,
-    timerSeconds: 240, // 4 minutos (dentro del rango 3-5 min)
+    timerSeconds: 300, // 5 minutos (300 segundos)
     timerRunning: false
   };
 
   // Inicialización
   document.addEventListener("DOMContentLoaded", function() {
     initPersonalizationBar();
-    initFilters();
+    initProgressiveFlow();
     initSearch();
     initModals();
     initTimerControls();
-    renderSpeeches();
   });
 
-  // Inicializa barra de personalización superior
+  // Inicializa barra de personalización superior visible
   function initPersonalizationBar() {
     var selFaculty = document.getElementById("custom-faculty");
     var selCampus = document.getElementById("custom-campus");
@@ -52,7 +52,9 @@
       selFaculty.value = state.selectedFaculty;
       selFaculty.addEventListener("change", function() {
         state.selectedFaculty = this.value;
-        renderSpeeches();
+        if (state.activePerspective && state.activeChannel) {
+          renderSpeeches();
+        }
       });
     }
 
@@ -63,14 +65,18 @@
       selCampus.value = state.selectedCampus;
       selCampus.addEventListener("change", function() {
         state.selectedCampus = this.value;
-        renderSpeeches();
+        if (state.activePerspective && state.activeChannel) {
+          renderSpeeches();
+        }
       });
     }
 
     if (inpSender) {
       inpSender.addEventListener("input", function() {
         state.senderName = this.value.trim();
-        renderSpeeches();
+        if (state.activePerspective && state.activeChannel) {
+          renderSpeeches();
+        }
       });
     }
 
@@ -78,7 +84,9 @@
       toggleUtm.addEventListener("change", function() {
         state.linkMode = this.checked ? "utm" : "tinyurl";
         updateLinkModeBadge();
-        renderSpeeches();
+        if (state.activePerspective && state.activeChannel) {
+          renderSpeeches();
+        }
       });
     }
   }
@@ -95,35 +103,58 @@
     }
   }
 
-  // Inicializa botones de filtro por perspectiva y canal (Medios Separados)
-  function initFilters() {
-    // 1. Filtros por Perspectiva
-    var persButtons = document.querySelectorAll("[data-filter-perspective]");
-    persButtons.forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        persButtons.forEach(function(b) {
-          b.classList.remove("active-pers-pill", "bg-blue-600", "text-white", "shadow-xs");
-          b.classList.add("bg-slate-100", "text-slate-700", "border-slate-200");
-        });
-        this.classList.add("active-pers-pill", "bg-blue-600", "text-white", "shadow-xs");
-        this.classList.remove("bg-slate-100", "text-slate-700", "border-slate-200");
-        state.activePerspective = this.getAttribute("data-filter-perspective");
-        renderSpeeches();
-      });
-    });
+  // =========================================================================
+  // FLUJO PROGRESIVO CONDICIONAL (PASO 1 -> PASO 2 -> PASO 3)
+  // =========================================================================
+  function initProgressiveFlow() {
+    var step2Container = document.getElementById("step-2-container");
+    var step3Container = document.getElementById("step-3-container");
 
-    // 2. Filtros por Canal (Medios Separados)
+    // Paso 1: Selección de Canal (Revela Paso 2)
     var chanButtons = document.querySelectorAll("[data-filter-channel]");
     chanButtons.forEach(function(btn) {
       btn.addEventListener("click", function() {
         chanButtons.forEach(function(b) {
-          b.classList.remove("active-channel-card", "border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
+          b.classList.remove("border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
           b.classList.add("border-slate-200", "bg-white", "text-slate-800");
         });
-        this.classList.add("active-channel-card", "border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
+        this.classList.add("border-blue-600", "bg-blue-50/70", "text-blue-900", "shadow-xs");
         this.classList.remove("border-slate-200", "bg-white", "text-slate-800");
+        
         state.activeChannel = this.getAttribute("data-filter-channel");
-        renderSpeeches();
+
+        // Revelar Paso 2 suavemente
+        if (step2Container) {
+          step2Container.classList.remove("hidden");
+          step2Container.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        // Si ya había una perspectiva elegida en Paso 2, re-renderizar Paso 3
+        if (state.activePerspective) {
+          renderSpeeches();
+        }
+      });
+    });
+
+    // Paso 2: Selección de Perspectiva (Revela Paso 3)
+    var persButtons = document.querySelectorAll("[data-filter-perspective]");
+    persButtons.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        persButtons.forEach(function(b) {
+          b.classList.remove("bg-blue-600", "text-white", "shadow-xs");
+          b.classList.add("bg-slate-100", "text-slate-700", "border-slate-200");
+        });
+        this.classList.add("bg-blue-600", "text-white", "shadow-xs");
+        this.classList.remove("bg-slate-100", "text-slate-700", "border-slate-200");
+        
+        state.activePerspective = this.getAttribute("data-filter-perspective");
+
+        // Revelar Paso 3 y renderizar discursos
+        if (step3Container) {
+          step3Container.classList.remove("hidden");
+          renderSpeeches();
+          step3Container.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       });
     });
   }
@@ -134,7 +165,9 @@
     if (searchInput) {
       searchInput.addEventListener("input", function() {
         state.searchQuery = this.value.toLowerCase().trim();
-        renderSpeeches();
+        if (state.activePerspective && state.activeChannel) {
+          renderSpeeches();
+        }
       });
     }
   }
@@ -170,9 +203,12 @@
     var counter = document.getElementById("speeches-counter");
     if (!container || !window.UNAB_SPEECHES) return;
 
+    var targetPerspective = state.activePerspective || "todas";
+    var targetChannel = state.activeChannel || "todos";
+
     var filtered = window.UNAB_SPEECHES.filter(function(s) {
-      var matchPers = (state.activePerspective === "todas" || s.perspective === state.activePerspective);
-      var matchChan = (state.activeChannel === "todos" || s.channel === state.activeChannel);
+      var matchPers = (targetPerspective === "todas" || s.perspective === targetPerspective);
+      var matchChan = (targetChannel === "todos" || s.channel === targetChannel);
       var matchQuery = true;
       if (state.searchQuery) {
         var fullText = (s.title + " " + s.subject + " " + s.body + " " + s.context).toLowerCase();
@@ -192,7 +228,7 @@
           <h3 class="text-base font-bold text-slate-800">No se encontraron discursos para esta combinación</h3>
           <p class="text-slate-500 text-xs mt-1">Intenta seleccionar "Todos" en los medios o perspectivas.</p>
           <button id="btn-reset-filters" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition cursor-pointer">
-            Restablecer todos los filtros
+            Restablecer a Todos
           </button>
         </div>
       `;
@@ -204,8 +240,11 @@
           state.searchQuery = "";
           var searchInput = document.getElementById("search-speeches");
           if (searchInput) searchInput.value = "";
-          initFilters();
-          renderSpeeches();
+          
+          var allPersBtn = document.getElementById("btn-pers-todas");
+          if (allPersBtn) allPersBtn.click();
+          var allChanBtn = document.getElementById("btn-chan-todos");
+          if (allChanBtn) allChanBtn.click();
         });
       }
       return;
@@ -242,7 +281,7 @@
               <span class="inline-flex items-center gap-1 font-semibold text-blue-700">📋 Encuesta: 3 a 5 min</span>
             </div>
 
-            <!-- Asunto Recomendado (si aplica) -->
+            <!-- Asunto Sugerido (si aplica) -->
             ${speech.subject ? `
               <div class="mb-3 bg-blue-50/70 p-2.5 rounded-xl border border-blue-100 text-xs">
                 <span class="text-blue-900 font-bold block mb-0.5">Asunto sugerido:</span>
@@ -482,7 +521,7 @@
         </div>
       `;
     } else if (state.activeMockupTab === "poster") {
-      // Afiche Promocional con Código QR Integrado
+      // Afiche Promocional con Código QR Integrado (Purificado Fácticamente)
       container.innerHTML = `
         <div class="max-w-md mx-auto bg-white text-slate-900 rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl flex flex-col">
           <!-- Poster Top Header -->
@@ -491,7 +530,7 @@
               <img src="assets/logo_unab.png" alt="UNAB" class="h-9 w-auto bg-white p-1 rounded-lg">
               <div>
                 <div class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300">Universidad Dr. Andrés Bello</div>
-                <div class="text-xs font-bold text-slate-100">Vicerrectoría Académica • Investigaciones</div>
+                <div class="text-xs font-bold text-slate-100">Proyecto de Investigación Académica • UNAB</div>
               </div>
             </div>
             <span class="text-[10px] bg-white/20 text-white font-bold px-2 py-0.5 rounded-full">2026</span>
@@ -501,13 +540,13 @@
           <div class="p-6 text-center space-y-4 bg-gradient-to-b from-blue-50/40 via-white to-slate-50">
             <div>
               <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-[10px] font-black uppercase tracking-wider mb-2">
-                Diagnóstico Oficial Estudiantil
+                Diagnóstico Académico Estudiantil
               </span>
               <h4 class="text-lg font-black text-slate-900 leading-tight">
-                ¿Lo que estás aprendiendo te prepara para el empleo que quieres?
+                Percepción de Utilidad Curricular y Retorno Formativo
               </h4>
               <p class="text-xs text-slate-600 mt-1">
-                Participa en la evaluación sobre <strong class="text-blue-800">Utilidad Curricular y Retorno Académico</strong> en la ${escapeHtml(state.selectedFaculty)}.
+                Comparte tu valoración objetiva sobre las asignaturas y competencias en la <strong class="text-blue-800">${escapeHtml(state.selectedFaculty)}</strong>.
               </p>
             </div>
 
@@ -556,7 +595,7 @@
 
           <!-- Poster Footer -->
           <div class="bg-slate-100 px-4 py-2 text-center text-[10px] text-slate-500 border-t border-slate-200">
-            Universidad Dr. Andrés Bello • Instrumento Psicométrico Institucional
+            Universidad Dr. Andrés Bello • Estudio sobre Retorno de Inversión Académica
           </div>
         </div>
       `;
@@ -583,9 +622,9 @@
           <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 text-white p-6 flex flex-col items-center justify-center text-center min-h-[200px]">
             <div class="text-2xl mb-1.5">📊🏛️</div>
             <div class="font-black text-amber-300 text-sm mb-1">${escapeHtml(speech.title)}</div>
-            <div class="text-[11px] text-blue-100 max-w-[220px]">Tu voz transforma los planes de estudio en la UNAB</div>
+            <div class="text-[11px] text-blue-100 max-w-[220px]">Diagnóstico sobre Utilidad Curricular y Retorno Formativo</div>
             <div class="mt-3 px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-[10px]">
-              Enlace en Biografía 🔗
+              Enlace de Participación 🔗
             </div>
           </div>
           <!-- Instagram Caption -->
@@ -605,7 +644,7 @@
   }
 
   // =========================================================================
-  // MODO PROYECCIÓN EN AULA (16:9 FULLSCREEN CON TEMPORIZADOR Y QR GIGANTE)
+  // MODO PROYECCIÓN EN AULA (16:9 FULLSCREEN CON TEMPORIZADOR A 5 MINUTOS)
   // =========================================================================
   window.openPresentationMode = function(speechId) {
     var speech = window.UNAB_SPEECHES.find(function(s) { return s.id === speechId; }) || window.UNAB_SPEECHES[0];
@@ -632,7 +671,7 @@
     pauseTimer();
   }
 
-  // Controlador de Temporizador para Aula (4 Minutos = 240s)
+  // Controlador de Temporizador para Aula (5 Minutos = 300s)
   function initTimerControls() {
     var btnToggle = document.getElementById("pres-timer-toggle");
     var btnReset = document.getElementById("pres-timer-reset");
@@ -684,7 +723,7 @@
 
   function resetTimer() {
     pauseTimer();
-    state.timerSeconds = 240; // 4 minutos (en rango 3-5 min)
+    state.timerSeconds = 300; // 5 minutos (300 segundos)
     renderTimerDisplay();
     var display = document.getElementById("pres-timer-display");
     if (display) display.classList.remove("text-rose-600");
@@ -705,7 +744,7 @@
       btn.innerHTML = "<span>⏸️</span> Pausar";
       btn.className = "px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs transition shadow-sm cursor-pointer";
     } else {
-      btn.innerHTML = "<span>▶️</span> Iniciar Tiempo";
+      btn.innerHTML = "<span>▶️</span> Iniciar 5 Minutos";
       btn.className = "px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm cursor-pointer";
     }
   }

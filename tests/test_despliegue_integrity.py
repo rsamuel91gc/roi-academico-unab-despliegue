@@ -48,7 +48,7 @@ class TestDespliegueIntegrity(unittest.TestCase):
         self.assertEqual(len(speech_ids), len(set(speech_ids)), "Existen IDs duplicados en el catálogo de discursos")
 
     def test_03_all_perspectives_covered(self):
-        """Verifica que las 5 perspectivas estén presentes en el catálogo"""
+        """Verifica que las perspectivas requeridas estén presentes en el catálogo"""
         with open(SPEECHES_PATH, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -63,7 +63,7 @@ class TestDespliegueIntegrity(unittest.TestCase):
             self.assertIn(f'perspective: "{p}"', content, f"Falta perspectiva requerida: {p}")
 
     def test_04_all_channels_covered(self):
-        """Verifica que los 6 canales comunicativos estén presentes en el catálogo"""
+        """Verifica que los canales comunicativos estén presentes en el catálogo"""
         with open(SPEECHES_PATH, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -102,11 +102,14 @@ class TestDespliegueIntegrity(unittest.TestCase):
             html = f.read()
 
         required_ids = [
+            'id="config-panel"',
             'id="custom-faculty"',
             'id="custom-campus"',
             'id="custom-sender"',
             'id="toggle-utm-mode"',
-            'id="search-speeches"',
+            'id="step-1-container"',
+            'id="step-2-container"',
+            'id="step-3-container"',
             'id="speeches-container"',
             'id="mockup-modal"',
             'id="btn-tab-poster"',
@@ -132,6 +135,44 @@ class TestDespliegueIntegrity(unittest.TestCase):
         self.assertIn("openMockupModal", js, "Falta Modo Mockup en app.js")
         self.assertIn("tinyurl.com/roi-academico-unabsv", js, "Falta URL corta canónica en app.js")
         self.assertIn("3 a 5 minutos", js, "Falta calibración de duración a 3 a 5 minutos en app.js")
+
+    def test_08_strict_factual_purity(self):
+        """Verifica la purificación fáctica estricta: cero menciones no autorizadas a vicerrectoría o comité de ética"""
+        with open(SPEECHES_PATH, "r", encoding="utf-8") as f:
+            speeches_content = f.read()
+        with open(INDEX_PATH, "r", encoding="utf-8") as f:
+            html_content = f.read()
+
+        prohibited_terms = [
+            "Comité de Ética",
+            "Vicerrectoría Académica",
+            "Dirección de Investigación",
+            "Qué onda",
+            "[STICKER DE ENLACE]"
+        ]
+        for term in prohibited_terms:
+            self.assertNotIn(term, speeches_content, f"Término no autorizado encontrado en speeches_data.js: '{term}'")
+            self.assertNotIn(term, html_content, f"Término no autorizado encontrado en index.html: '{term}'")
+
+    def test_09_progressive_step_flow_structure(self):
+        """Verifica que los pasos 2 y 3 comiencen ocultos mediante la clase hidden"""
+        with open(INDEX_PATH, "r", encoding="utf-8") as f:
+            html = f.read()
+
+        # step-2-container debe tener hidden
+        self.assertRegex(html, r'id="step-2-container"[^>]*class="[^"]*hidden[^"]*"', "El Paso 2 debe iniciar oculto con clase 'hidden'")
+        # step-3-container debe tener hidden
+        self.assertRegex(html, r'id="step-3-container"[^>]*class="[^"]*hidden[^"]*"', "El Paso 3 debe iniciar oculto con clase 'hidden'")
+
+    def test_10_timer_and_duration_standards(self):
+        """Verifica que el temporizador esté calibrado a 5 minutos (05:00 / 300 segundos) y texto de duración realista"""
+        with open(INDEX_PATH, "r", encoding="utf-8") as f:
+            html = f.read()
+        with open(APP_PATH, "r", encoding="utf-8") as f:
+            js = f.read()
+
+        self.assertIn("05:00", html, "El display inicial del temporizador en index.html debe ser 05:00")
+        self.assertIn("300", js, "El valor inicial de state.timerSeconds en app.js debe ser 300")
 
 
 if __name__ == "__main__":

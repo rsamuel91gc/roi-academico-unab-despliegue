@@ -11,7 +11,7 @@
 ## 🧭 1. Tríada Epistémica y Gobernanza de Hechos
 - `[G] GENERADO`: Métricas, conteo de discursos, hashes de assets, firmas de métodos y grafos de llamadas.
 - `[V] VERIFICADO`: Pruebas automatizadas (integrity + E2E Playwright), validación de URLs y códigos QR.
-- `[N] NARRATIVO`: Decisiones de diseño, intenciones pedagógicas, acuerdos del protocolo `/grill-me` y calibración de tiempos reales.
+- `[N] NARRATIVO`: Decisiones de diseño, intenciones pedagógicas, acuerdos del protocolo `/grill-me`, flujo progresivo y calibración de tiempos reales.
 
 ---
 
@@ -23,10 +23,23 @@
 | `selectedCampus` | `#custom-campus` | `filterState.campus` | 4 Sedes Oficiales | `localStorage` | `applyCustomizations()` | Tarjetas / Mockup | Clipboard / URL | §4.1 | `speeches_data.js` | `test_despliegue_integrity.py` |
 | `senderName` | `#custom-sender` | `filterState.sender` | Sanitización HTML | `localStorage` | `applyCustomizations()` | Tarjetas / Mockup | Clipboard | §4.2 | `speeches_data.js` | `test_despliegue_integrity.py` |
 | `linkMode` | `#toggle-utm-mode` | `filterState.linkMode` | Boolean (`tinyurl`/`utm`) | `localStorage` | `resolveTargetLink()` | Badge / URL Preview| Clipboard / Link | §4.3 | URLs Canónicas | `test_despliegue_e2e_playwright.py` |
-| `activePerspective` | `[data-filter-perspective]` | `state.activePerspective`| 5 Perspectivas | `state` | `filterSpeeches()` | Grid reactivo | - | §3.1 | Catálogo 20+ | `test_despliegue_e2e_playwright.py` |
-| `activeChannel` | `[data-filter-channel]` | `state.activeChannel` | 5 Medios Separados | `state` | `selectChannelTab()` | Módulos separados | - | §3.2 | Catálogo 20+ | `test_despliegue_e2e_playwright.py` |
+| `activeChannel` | `#step-1-container .channel-card` | `state.channel` | 5 Medios Separados | `state` | Revela Paso 2 + Scroll | Módulos separados | - | §3.1 | Catálogo 22 | `test_despliegue_e2e_playwright.py` |
+| `activePerspective` | `#step-2-container .persona-card` | `state.persona`| 4 Perspectivas | `state` | Revela Paso 3 + `renderSpeeches()` | Grid reactivo | - | §3.2 | Catálogo 22 | `test_despliegue_e2e_playwright.py` |
 | `activeMockupTab` | `[data-mockup-tab]` | `state.activeMockupTab` | WA/Email/IG/Poster | `state` | `renderActiveMockupContent()` | Mockup Modal | SVG/PNG Download | §3.3 | Mockup Templates | `test_despliegue_e2e_playwright.py` |
-| `surveyDuration` | Inyectada `{tiempo}` | Constant "3 a 5 min" | String fijo | Inmutable | `interpolateText()` | Tarjetas / Afiches | Text / Clipboard | §1.4 | Speeches | `test_despliegue_integrity.py` |
+| `timerSeconds` | `#timer-display` / `#timer-toggle` | `state.timerSeconds` | Integer (300 segs) | En memoria | `toggleTimer()` / `resetTimer()` | Visualizador 05:00 | Audio Beep | §3.4 | Cronómetro 5m | `test_despliegue_e2e_playwright.py` |
+| `surveyDuration` | Inyectada `{tiempo}` | Constant "3 a 5 minutos" | String fijo | Inmutable | `interpolateText()` | Tarjetas / Afiches | Text / Clipboard | §1.4 | Speeches | `test_despliegue_integrity.py` |
+
+---
+
+## 🔀 2.1 Flujo Progresivo Secuencial Condicional
+
+```mermaid
+flowchart TD
+    Config["#config-panel: Personalización Visible al Inicio (Sede, Facultad, Docente, Modo Link)"] --> P1["#step-1-container (Paso 1: ¿Por qué medio vas a compartir?)"]
+    P1 -- "Click en Canal" --> P2["#step-2-container (Paso 2: ¿Quién eres tú? - Desoculta 'hidden')"]
+    P2 -- "Click en Perspectiva" --> P3["#step-3-container (Paso 3: Elige tu mensaje y pulsa Copiar - Desoculta 'hidden')"]
+    P3 --> Cards["22 Tarjetas con Copiado en 1 Clic y Visualizador de Afiche QR"]
+```
 
 ---
 
@@ -41,7 +54,7 @@ graph TD
     B --> D
     D --> G["Medios Separados (WhatsApp, Correo, Afiche QR, Aula, Redes)"]
     D --> H["Modal de Mockups (WA / Email / IG / Afiche con QR)"]
-    D --> I["Modo Proyección Aula 16:9 (Cronómetro 4 min)"]
+    D --> I["Modo Proyección Aula 16:9 (Cronómetro 5 min / 300s)"]
     D --> J["Centro de Descargas Oficiales"]
 ```
 
@@ -55,6 +68,8 @@ graph TD
    - Toda entrada de usuario en la barra de personalización rápida (`#custom-sender`, `#custom-faculty`, `#custom-campus`) se escapa antes de la interpolación en el DOM mediante `escapeHtml()`.
 3. **Persistencia Segura**:
    - `localStorage` se utiliza exclusivamente para recordar la última selección de sede/facultad en el navegador del usuario.
+4. **Flujo Progresivo Antierrores**:
+   - Evita la parálisis de decisión al no saturar al usuario con opciones antes de que defina su canal y rol emisor.
 
 ---
 

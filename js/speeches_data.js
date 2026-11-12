@@ -1,7 +1,9 @@
 /**
  * speeches_data.js - Catálogo Integral de Discursos y Comunicaciones Multicanal
  * Plataforma: roi-academico-unab-despliegue (Universidad Dr. Andrés Bello)
- * Estándar: Cero Placeholders, 100% Textos Funcionales, Híbrido Reactivo
+ * Estándar: Cero Placeholders, Imparcialidad Metodológica (Anti-Sesgo), Tono Colegial Respetuoso
+ * Proyecto de Investigación Académica sobre Utilidad Curricular e Inserción Laboral
+ * Autor: Roberto Samuel García Cerna • Universidad Dr. Andrés Bello
  * 
  * Variables interpolables soportadas:
  * {nombre}   -> Nombre del emisor o docente
@@ -13,41 +15,37 @@
 
 window.UNAB_SPEECHES = [
   // =========================================================================
-  // 1. PERSPECTIVA: INSTITUCIONAL (UNAB OFICIAL -> ESTUDIANTE)
+  // 1. PERSPECTIVA: INSTITUCIONAL / ESTUDIO ACADÉMICO OFICIAL
   // =========================================================================
   {
-    id: "unab-email-rectoria",
+    id: "unab-email-institucional",
     perspective: "institucional",
     perspectiveLabel: "🏛️ Institucional (UNAB)",
     channel: "email",
     channelLabel: "📧 Correo Institucional",
-    title: "Comunicado Oficial de Rectoría y Vicerrectoría Académica",
-    context: "Envío masivo oficial a toda la base de datos de correos estudiantiles activos (@unab.edu.sv).",
+    title: "Comunicado Institucional sobre Pertinencia Curricular",
+    context: "Envío formal a la comunidad estudiantil de la facultad para convocar al diagnóstico curricular.",
     readingTime: "1m 15s",
-    words: 185,
-    subject: "Tu opinión define el futuro de tu carrera: Diagnóstico Oficial de Retorno Curricular UNAB 2026",
+    words: 175,
+    subject: "Evaluación de Pertinencia Curricular y Trayectoria Laboral UNAB",
     body: `Estimada comunidad estudiantil de la {facultad} (Sede {sede}):
 
-En la Universidad Dr. Andrés Bello asumimos el compromiso ineludible de garantizar que cada ciclo, materia y competencia académica que cursas represente un verdadero retorno de inversión para tu inserción laboral y superación profesional.
+En el marco del compromiso constante con la calidad educativa de la Universidad Dr. Andrés Bello, se pone a su disposición el Instrumento de Diagnóstico sobre Utilidad Curricular e Inserción Laboral.
 
-Por ello, la Dirección de Investigación y Vicerrectoría Académica ponen a tu disposición el Instrumento Oficial de Diagnóstico Psicométrico sobre Utilidad Curricular. 
+El objetivo de este estudio es recopilar información objetiva y representativa sobre la pertinencia de las competencias y contenidos impartidos, así como su vinculación con las demandas profesionales en El Salvador. Tanto sus valoraciones positivas como sus sugerencias constructivas de fortalecimiento son indispensables para obtener un diagnóstico fidedigno.
 
-Tus respuestas permitirán identificar con exactitud estadística qué áreas de tu plan de estudios requieren actualización, fortalecimiento práctico o vinculación tecnológica inmediata con los sectores productivos de El Salvador.
+🔒 Garantía de Confidencialidad y Anonimato:
+- Su participación es 100% anónima.
+- La información se procesa mediante análisis psicométrico agregado.
+- Al completar el cuestionario, el sistema generará una constancia digital con comprobante criptográfico SHA-256.
 
-🔒 Garantía de Confidencialidad y Ética:
-- Tu participación es 100% anónima.
-- Los datos se procesan mediante análisis estadístico agregado.
-- Al finalizar, recibirás una constancia digital institucional con comprobante criptográfico SHA-256.
+Tiempo estimado de respuesta: {tiempo}.
 
-Tiempo estimado: únicamente {tiempo}.
-
-Ingresa y participa activamente aquí:
+Les invitamos a participar de manera reflexiva ingresando en:
 👉 {link}
 
-"Tu voz fundamentada construye la excelencia académica de la UNAB."
-
 Atentamente,
-Comité de Calidad y Vicerrectoría de Investigación UNAB`
+Equipo de Investigación Académica • Universidad Dr. Andrés Bello`
   },
   {
     id: "unab-whatsapp-oficial",
@@ -55,27 +53,27 @@ Comité de Calidad y Vicerrectoría de Investigación UNAB`
     perspectiveLabel: "🏛️ Institucional (UNAB)",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Aviso Oficial de Difusión por Canales de Mensajería",
-    context: "Para difusión en listas de difusión institucional, canales oficiales de Telegram o WhatsApp Channels de la UNAB.",
+    title: "Aviso Institucional para Canales y Grupos de Mensajería",
+    context: "Para difusión informativa en canales universitarios, grupos de materia y listas de anuncios.",
     readingTime: "40s",
-    words: 110,
-    subject: "Aviso Oficial UNAB - Encuesta Curricular",
-    body: `🏛️ *UNIVERSIDAD DR. ANDRÉS BELLO • VICERRECTORÍA ACADÉMICA*
+    words: 105,
+    subject: "Aviso Informativo UNAB - Diagnóstico Curricular",
+    body: `🏛️ *UNIVERSIDAD DR. ANDRÉS BELLO • INVESTIGACIÓN ACADÉMICA*
 
 Estimado(a) estudiante de {facultad} - Sede {sede}:
 
-¿Qué tan útiles consideras las materias que estás cursando para conseguir el trabajo que deseas? 🎯
+Les extendemos una cordial invitación a participar en el *Diagnóstico de Percepción de Utilidad Curricular e Inserción Laboral*. 
 
-Tu opinión es vital para los procesos de acreditación y renovación de los planes de estudio. Te invitamos a completar el *Diagnóstico Oficial de Utilidad Curricular e Inserción Laboral*.
+Su valoración sincera y reflexiva sobre las asignaturas de la carrera aportará datos objetivos para evaluar la pertinencia formativa.
 
-⏱️ *Duración:* Solo {tiempo} (6 secciones breves).
+⏱️ *Duración:* {tiempo} (6 secciones estructuradas).
 🔒 *Privacidad:* 100% Anónimo y Confidencial.
-📜 *Constancia:* Genera comprobante digital de participación con hash de seguridad al completar.
+📜 *Constancia:* Genera comprobante digital con código de verificación al finalizar.
 
-Haz valer tu experiencia universitaria aquí:
+Pueden acceder al cuestionario directamente desde su dispositivo móvil:
 👉 {link}
 
-¡Gracias por ser protagonista del cambio en la UNAB! 🦅`
+Agradecemos su valiosa colaboración en este estudio académico. 🦅`
   },
   {
     id: "unab-lms-banner",
@@ -83,23 +81,23 @@ Haz valer tu experiencia universitaria aquí:
     perspectiveLabel: "🏛️ Institucional (UNAB)",
     channel: "lms",
     channelLabel: "🖥️ Aula Virtual / LMS",
-    title: "Anuncio Destacado en Campus Virtual (Canvas / Moodle)",
-    context: "Para fijar en la cabecera principal del aula virtual de todos los estudiantes al iniciar sesión.",
+    title: "Anuncio Académico para Campus Virtual (Canvas / Moodle)",
+    context: "Para fijar como aviso en el tablón principal o cartelera informativa del aula virtual.",
     readingTime: "35s",
-    words: 95,
-    subject: "Aviso Global en Campus Virtual",
-    body: `📢 **PARTICIPACIÓN ESTUDIANTIL REQUERIDA • DIAGNÓSTICO INSTITUCIONAL 2026**
+    words: 90,
+    subject: "Aviso Académico en Campus Virtual",
+    body: `📢 **PARTICIPACIÓN ESTUDIANTIL • ESTUDIO DE PERTINENCIA CURRICULAR**
 
-Estimado estudiante de la {facultad}:
+Estimados estudiantes de la {facultad}:
 
-La Dirección de Investigación de la UNAB te invita a participar en la evaluación de pertinencia curricular y retorno de inversión académica. 
+Les invitamos a formar parte del estudio sobre *Percepción de Utilidad Curricular y Retorno Formativo*. 
 
-Tus valoraciones objetivas sobre las asignaturas y habilidades profesionales son indispensables para adecuar los programas de estudio a la realidad del mercado laboral salvadoreño.
+Sus respuestas imparciales sobre los contenidos temáticos y las competencias laborales son esenciales para fundamentar análisis académicos rigurosos.
 
 - **Tiempo estimado:** {tiempo}
-- **Anonimato garantizado:** No se solicitan contraseñas ni datos sensibles.
+- **Anonimato total:** No se solicita inicio de sesión ni datos personales identificables.
 
-[➡️ HAZ CLIC AQUÍ PARA COMPLETAR LA EVALUACIÓN]({link})`
+[➡️ ACCEDER AL FORMULARIO OFICIAL]({link})`
   },
   {
     id: "unab-social-linkedin",
@@ -107,25 +105,25 @@ Tus valoraciones objetivas sobre las asignaturas y habilidades profesionales son
     perspectiveLabel: "🏛️ Institucional (UNAB)",
     channel: "social",
     channelLabel: "📱 Redes Sociales",
-    title: "Publicación Institucional para LinkedIn y Facebook",
-    context: "Orientado a proyectar rigor institucional, empleabilidad y compromiso con la mejora continua.",
+    title: "Publicación Institucional para Redes Profesionales",
+    context: "Orientado a proyectar rigor investigativo, transparencia y participación comunitaria.",
     readingTime: "50s",
-    words: 135,
-    subject: "Post de Redes Institucionales",
-    body: `En la Universidad Dr. Andrés Bello creemos en una educación superior conectada con las exigencias reales del mercado laboral. 💼📊
+    words: 130,
+    subject: "Difusión Institucional en Redes",
+    body: `En la Universidad Dr. Andrés Bello la retroalimentación estudiantil es un pilar indispensable para la pertinencia académica. 💼📊
 
-Iniciamos la jornada institucional de diagnóstico sobre *Percepción de Utilidad Curricular y Expectativas de Inserción Laboral*, una investigación psicométrica que permitirá evaluar el retorno académico de nuestra oferta curricular en todas las sedes y facultades.
+Invitamos a los estudiantes activos de la {facultad} (Sede {sede}) a participar en la investigación académica sobre *Percepción de Utilidad Curricular y Expectativas de Inserción Laboral*.
 
-Si eres estudiante activo de la {facultad} en Sede {sede}, tu perspectiva es el insumo fundamental para las actualizaciones curriculares del próximo quinquenio.
+El estudio recopila valoraciones imparciales para evaluar la relación entre la formación universitaria y el entorno profesional.
 
-✅ 100% anónimo y respaldado por el Comité de Ética en Investigación.
-✅ Solo toma {tiempo}.
-✅ Incluye constancia digital con validación criptográfica SHA-256.
+✅ 100% anónimo, confidencial y para fines estrictamente académicos.
+✅ Duración estimada: {tiempo}.
+✅ Constancia digital de participación con validación SHA-256.
 
-Participa hoy mismo desde tu dispositivo móvil:
+Participa desde cualquier dispositivo:
 👉 {link}
 
-#OrgulloUNAB #EducacionSuperior #CalidadAcademica #InvestigacionUNAB #ElSalvador`
+#OrgulloUNAB #EducacionSuperior #InvestigacionAcademica #ElSalvador`
   },
   {
     id: "unab-print-mural",
@@ -133,24 +131,22 @@ Participa hoy mismo desde tu dispositivo móvil:
     perspectiveLabel: "🏛️ Institucional (UNAB)",
     channel: "print",
     channelLabel: "📄 Afiches y Material Físico",
-    title: "Texto para Afiches de Pasillo, Murales y Cafeterías",
-    context: "Diseñado para carteles tamaño póster/carta ubicados junto a los códigos QR impresos en puntos de alto tráfico del campus.",
+    title: "Texto Informativo para Afiches de Campus y Murales",
+    context: "Texto de apoyo para carteles con código QR en pasillos, biblioteca y áreas comunes del campus.",
     readingTime: "30s",
-    words: 75,
-    subject: "Copia para Afiche de Pared con Código QR",
+    words: 70,
+    subject: "Información de Afiche con Código QR",
     body: `🏛️ UNIVERSIDAD DR. ANDRÉS BELLO
-¿LO QUE ESTÁS APRENDIENDO TE PREPARA PARA EL EMPLEO QUE QUIERES?
+DIAGNÓSTICO ACADÉMICO: PERCEPCIÓN DE UTILIDAD CURRICULAR
 
-Tu voz tiene poder de decisión. Participa en el Estudio Oficial de Pertinencia Curricular.
+Tu perspectiva sobre los contenidos y competencias de tu carrera aporta datos objetivos para la investigación académica.
 
-⏱️ Te toma menos de {tiempo}.
-🔒 Tu respuesta es 100% ANÓNIMA.
-📱 Escanea el código QR central con la cámara de tu celular.
-
-O ingresa directamente desde tu navegador:
+⏱️ Duración: {tiempo}.
+🔒 Participación 100% anónima y confidencial.
+📱 Escanea el código QR con tu celular o ingresa en:
 👉 {link}
 
-Comité de Investigación y Vicerrectoría Académica UNAB`
+Proyecto de Investigación Académica UNAB`
   },
 
   // =========================================================================
@@ -162,22 +158,24 @@ Comité de Investigación y Vicerrectoría Académica UNAB`
     perspectiveLabel: "👨‍🏫 Docente a Estudiante",
     channel: "speech",
     channelLabel: "🗣️ Speech Oral en Aula (60-90s)",
-    title: "Guion Oral en Vivo: Pausa Activa de 3 a 5 Minutos en Clase",
-    context: "Para ser leído o parafraseado por el docente al inicio o cierre de la clase, proyectando el QR en pantalla y dando de 3 a 5 minutos en silencio para que todos respondan.",
+    title: "Guion Oral en Vivo: Pausa Activa en Clase",
+    context: "Para ser leído o parafraseado por el docente al inicio o cierre de la clase, proyectando el QR en pantalla para que el grupo responda de forma reflexiva.",
     readingTime: "1m 10s",
-    words: 160,
+    words: 155,
     subject: "Guion Verbal para Salón de Clases Presencial / Virtual",
     body: `(El docente proyecta en pantalla la diapositiva con el QR y se dirige al grupo):
 
-"Buenos días / tardes, jóvenes de la {facultad}. Les pido unos breves minutos de su atención antes de iniciar formalmente la clase de hoy.
+"Buenos días / tardes, jóvenes de la {facultad}. Les solicito unos breves minutos de su atención antes de iniciar formalmente nuestra sesión.
 
-Como docentes, nos interesa profundamente que cada hora que pasan en esta aula y cada materia de la carrera realmente les abra puertas cuando salgan a buscar empleo o emprender. La universidad está realizando un estudio de investigación formal para evaluar exactamente eso: qué tan útiles perciben los contenidos de su carrera y cuáles son sus expectativas reales de trabajo.
+En nuestra universidad se está desarrollando una investigación académica para conocer de primera mano cómo perciben ustedes la utilidad de las asignaturas que cursan y cuáles son sus expectativas laborales al egresar.
 
-La encuesta es totalmente anónima, no les pide su nombre ni su carné, y está avalada por el Comité de Ética. 
+El valor de este estudio radica en contar con respuestas completamente sinceras y objetivas. Tanto si consideran que los contenidos responden con solidez a sus metas, como si identifican áreas que ameritan mayor profundización práctica, su criterio es fundamental.
 
-He puesto en la pantalla el código QR y también les envié el enlace al grupo de WhatsApp. Vamos a tomarnos de 3 a 5 minutos en este momento para que todos saquemos el teléfono y la completemos juntos. Quien termine verá en su pantalla su constancia digital.
+La encuesta es 100% anónima, no solicita nombre ni carné, y toma de 3 a 5 minutos.
 
-Por favor, ingresen en: {link} o escaneen el QR en pantalla. Empecemos ahora."`
+He colocado en pantalla el código QR y también les compartí el enlace al chat. Vamos a tomarnos esta breve pausa para completarla en silencio. Al finalizar podrán descargar su constancia digital.
+
+Enlace directo: {link}. Iniciemos ahora."`
   },
   {
     id: "docente-whatsapp-grupo",
@@ -185,25 +183,25 @@ Por favor, ingresen en: {link} o escaneen el QR en pantalla. Empecemos ahora."`
     perspectiveLabel: "👨‍🏫 Docente a Estudiante",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Mensaje del Catedrático al Grupo de WhatsApp de la Materia",
-    context: "Para enviar directamente en el grupo de clase de la materia, generando cercanía y sentido de responsabilidad compartida.",
+    title: "Mensaje del Docente al Grupo de la Asignatura",
+    context: "Para compartir directamente en el grupo de clase de la materia, motivando la participación reflexiva.",
     readingTime: "45s",
-    words: 125,
-    subject: "Mensaje de WhatsApp del Catedrático a sus Alumnos",
+    words: 120,
+    subject: "Mensaje del Catedrático a sus Estudiantes",
     body: `Estimados estudiantes de nuestra cátedra en {facultad}:
 
-Les saluda {nombre}. Espero que estén teniendo una excelente semana.
+Les saluda {nombre}. Espero que se encuentren muy bien.
 
-Les escribo para pedirles un apoyo muy especial pero sobre todo muy valioso para ustedes mismos. La UNAB está levantando un diagnóstico para saber si las materias que estamos impartiendo responden a lo que el sector laboral está exigiendo actualmente.
+Les escribo para invitarles a colaborar en un estudio de investigación académica que se está realizando en la UNAB sobre la utilidad curricular de nuestras asignaturas y su relación con el campo laboral.
 
-Como su docente, me interesa que sean sumamente honestos: señalen lo que está funcionando y también lo que necesita ser más práctico y actualizado.
+Como su docente, les pido que respondan con total honestidad y objetividad, reflejando su perspectiva sincera sobre su experiencia de aprendizaje.
 
-✅ La encuesta es 100% anónima.
-⏱️ Toma solo {tiempo}.
-📱 Pueden llenarla directamente desde su teléfono aquí:
+✅ 100% anónimo y confidencial.
+⏱️ Toma entre {tiempo}.
+📱 Enlace directo para completar desde el teléfono:
 👉 {link}
 
-Les agradecería me confirmen con un pulgar arriba (👍) en cuanto la hayan completado. ¡Su retroalimentación nos ayuda a ser mejores docentes y a tener una mejor universidad!`
+Agradeceré me confirmen con un pulgar arriba (👍) cuando lo hayan completado. Su aporte enriquece este estudio académico.`
   },
   {
     id: "docente-email-alumnos",
@@ -211,23 +209,23 @@ Les agradecería me confirmen con un pulgar arriba (👍) en cuanto la hayan com
     perspectiveLabel: "👨‍🏫 Docente a Estudiante",
     channel: "email",
     channelLabel: "📧 Correo Institucional",
-    title: "Correo del Docente con Enfoque en Mentoría y Calidad",
-    context: "Para enviar a través de la lista de correo de la asignatura o mensaje interno de plataforma virtual.",
+    title: "Correo del Docente con Enfoque Formativo y Rigor",
+    context: "Para enviar a través de la lista de correo de la asignatura o mensajería de plataforma virtual.",
     readingTime: "1m 00s",
-    words: 155,
-    subject: "Aporte indispensable a nuestra carrera: Diagnóstico de inserción laboral UNAB",
+    words: 145,
+    subject: "Invitación a participar: Diagnóstico Académico sobre Utilidad Curricular",
     body: `Apreciables estudiantes:
 
-Les saluda su docente {nombre}. A lo largo de este ciclo en la {facultad} (Sede {sede}), hemos reflexionado constantemente sobre la importancia de adquirir competencias prácticas aplicables al campo profesional.
+Les saluda su docente {nombre}. A lo largo de este ciclo en la {facultad} (Sede {sede}), hemos reflexionado sobre la importancia de consolidar competencias aplicables a la realidad profesional.
 
-En este momento, la universidad está recopilando la perspectiva de ustedes sobre la utilidad de los planes de estudio y sus metas laborales. Esta información es la herramienta más contundente que tenemos como cuerpo académico para solicitar mejoras en laboratorios, actualización de bibliografía y nuevos enfoques metodológicos.
+En este momento se encuentra abierta la recopilación de datos para una investigación sobre la percepción estudiantil de los planes de estudio y las aspiraciones de inserción laboral.
 
-Les solicito encarecidamente que dediquen {tiempo} a contestar este cuestionario oficial:
+Les solicito dedicar {tiempo} a contestar este cuestionario con criterio analítico y madurez:
 👉 {link}
 
-Sus respuestas están totalmente blindadas bajo anonimato y rigor psicométrico, por lo que pueden responder con entera libertad y franqueza.
+Sus respuestas están totalmente protegidas bajo anonimato psicométrico, por lo que pueden responder con entera libertad y objetividad.
 
-Agradezco de antemano su madurez y compromiso con nuestra facultad.
+Agradezco de antemano su colaboración responsable.
 
 Atentamente,
 {nombre}
@@ -240,24 +238,24 @@ Docente UNAB • Sede {sede}`
     channel: "lms",
     channelLabel: "🖥️ Aula Virtual / LMS",
     title: "Publicación en el Tablón de Google Classroom / Moodle",
-    context: "Para publicar como aviso prioritario en el tablón principal de la clase virtual.",
+    context: "Para publicar como aviso en el tablón principal de la clase virtual.",
     readingTime: "30s",
-    words: 85,
-    subject: "Aviso en Tablón de Tareas",
-    body: `📌 **Actividad de Retroalimentación Curricular (No evaluada, impacto institucional)**
+    words: 80,
+    subject: "Aviso de Investigación en Tablón de Clase",
+    body: `📌 **Estudio Académico sobre Pertinencia Curricular e Inserción Laboral**
 
-Estimado grupo: les comparto el enlace a la encuesta de diagnóstico psicométrico de la UNAB sobre Utilidad Curricular e Inserción Laboral.
+Estimado grupo: les comparto el enlace al diagnóstico psicométrico que se lleva a cabo en la UNAB.
 
-Les pido que la respondan hoy antes de las 11:59 p.m. Son solo 6 bloques rápidos ({tiempo}) y es completamente anónima. Al terminar se les generará una constancia con código de verificación.
+Su valoración objetiva nos permitirá contar con datos representativos de nuestra facultad. La encuesta es completamente anónima y toma {tiempo}.
 
 Enlace de acceso:
 🔗 {link}
 
-¡Gracias por su colaboración activa!`
+Agradezco su participación activa.`
   },
 
   // =========================================================================
-  // 3. PERSPECTIVA: ESTUDIANTE A ESTUDIANTE (PEER-TO-PEER / LÍDERES)
+  // 3. PERSPECTIVA: ESTUDIANTE A ESTUDIANTE (PEER-TO-PEER / COLEGIAL)
   // =========================================================================
   {
     id: "peer-whatsapp-amigos",
@@ -265,23 +263,24 @@ Enlace de acceso:
     perspectiveLabel: "🎓 Estudiante a Estudiante",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Mensaje Directo para Grupos de Compañeros de Carrera",
-    context: "Para ser compartido por presidentes de clase, representantes estudiantiles o entre amigos de confianza sin tono acartonado.",
+    title: "Mensaje Colegial para Grupos de Compañeros de Carrera",
+    context: "Para ser compartido por representantes de clase o compañeros en grupos de estudio con tono respetuoso y cercano.",
     readingTime: "35s",
-    words: 105,
-    subject: "Mensaje Estudiantil Relajado y Directo",
-    body: `Oigan gente de {facultad} 👋
+    words: 100,
+    subject: "Mensaje Estudiantil Colegial y Respetuoso",
+    body: `Estimados compañeros de {facultad} 👋
 
-¿No les pasa que a veces sentimos que nos enseñan cosas que no tienen nada que ver con lo que piden en los trabajos de verdad? 🤦‍♂️😅
+Les comparto la encuesta del estudio de investigación académica sobre Utilidad Curricular y Retorno Formativo en la UNAB.
 
-Bueno, justo ahorita la UNAB sacó una encuesta oficial que SÍ van a tomar en cuenta para actualizar los planes de estudio y ver qué tan útil sentimos la carrera frente a los salarios reales.
+El objetivo de esta investigación es recopilar nuestra perspectiva genuina sobre las asignaturas y cómo se alinean con las competencias profesionales. Tanto los aspectos que consideren plenamente satisfactorios como aquellos que identifiquen como oportunidades de fortalecimiento son indispensables para reflejar la realidad estudiantil.
 
-No pide carné ni correo, es 100% anónima y toma entre 3 a 5 minutos (literal {tiempo}). 
+🔒 Es 100% anónima (no pide carné ni correo).
+⏱️ Toma entre {tiempo}.
 
-Hagámonos escuchar de verdad con datos duros:
+Les invito a completarla desde su teléfono en este enlace:
 👉 {link}
 
-Llévenla antes de que se les olvide, entre más seamos más presión hay para que mejoren las cosas. ¡Pásenla a sus otros grupos! 🔥`
+¡Gracias por su colaboración!`
   },
   {
     id: "peer-speech-delegado",
@@ -289,20 +288,18 @@ Llévenla antes de que se les olvide, entre más seamos más presión hay para q
     perspectiveLabel: "🎓 Estudiante a Estudiante",
     channel: "speech",
     channelLabel: "🗣️ Speech Oral en Aula (60-90s)",
-    title: "Intervención de Delegado Estudiantil en Cambio de Hora",
-    context: "Para que un estudiante líder o representante de la Asociación Estudiantil hable frente a sus compañeros entre clases.",
+    title: "Intervención de Representante Estudiantil en Cambio de Hora",
+    context: "Para que un estudiante líder o representante hable de manera respetuosa frente a sus compañeros entre clases.",
     readingTime: "50s",
-    words: 120,
-    subject: "Guion de Delegado o Representante Estudiantil",
-    body: `"Qué onda compañeros, solo les robo un par de minutos antes de que llegue el siguiente licenciado.
+    words: 115,
+    subject: "Guion de Representante Estudiantil Colegial",
+    body: `"Buenas tardes / días, compañeros. Les solicito dos minutos de su atención antes de iniciar la siguiente clase.
 
-Siempre nos estamos quejando en los pasillos de que hay materias con demasiada teoría, de que los laboratorios necesitan actualización o de que cuando salgamos a trabajar no sabemos si nos van a pagar bien. Pues miren: ahorita hay una encuesta de investigación oficial abierta exactamente para eso.
+En este ciclo se está desarrollando un estudio de investigación académica sobre la pertinencia de las asignaturas de nuestra facultad frente a las exigencias profesionales. La encuesta busca conocer la valoración genuina y reflexiva de todos nosotros, sin sesgos, para obtener datos representativos de nuestra experiencia formativa.
 
-Si no la llenamos, luego no tenemos derecho a quejarnos de que nadie nos escucha. No les pide nombre, es completamente anónima y toma entre 3 a 5 minutos.
+Es 100% anónima, no solicita datos personales y toma de 3 a 5 minutos.
 
-Les acabo de reenviar el link al grupo de WhatsApp del salón. Por favor ábranlo ahorita mismo mientras esperamos clase: {link}.
-
-Demostremos que a los estudiantes de {facultad} sí nos importa el futuro de nuestra carrera. ¡Gracias!"`
+Les he compartido el enlace al grupo de WhatsApp de la clase: {link}. Su participación responsable es muy valiosa para que la perspectiva estudiantil quede debidamente registrada. ¡Muchas gracias por su tiempo!"`
   },
   {
     id: "peer-social-story",
@@ -310,20 +307,22 @@ Demostremos que a los estudiantes de {facultad} sí nos importa el futuro de nue
     perspectiveLabel: "🎓 Estudiante a Estudiante",
     channel: "social",
     channelLabel: "📱 Redes Sociales",
-    title: "Copy para Instagram Story / TikTok con Sticker de Enlace",
-    context: "Para que estudiantes e influencers universitarios suban una historia con captura de pantalla y sticker de enlace.",
+    title: "Copy para Redes Sociales y Estados con Enlace Directo",
+    context: "Para compartir en historias de Instagram, WhatsApp o redes sociales con enlace directo sin etiquetas técnicas confusas.",
     readingTime: "25s",
-    words: 65,
-    subject: "Guion para Story de Instagram / TikTok",
-    body: `Gente de la UNAB 🦅
-¿Sienten que la U de verdad los está preparando para el mercado laboral actual? 🤔
+    words: 60,
+    subject: "Publicación para Redes Sociales Estudiantiles",
+    body: `Comunidad estudiantil de {facultad} 🦅
 
-Abrieron una encuesta oficial 100% ANÓNIMA para evaluar exactamente eso. Solo toma de 3 a 5 minutos y te da constancia con comprobante al final 📜✨
+Participa en el diagnóstico académico sobre Utilidad Curricular y Expectativas de Inserción Laboral en la UNAB. Tu valoración objetiva y reflexiva es fundamental para esta investigación.
 
-Haz valer tu opinión aquí 👇
-[STICKER DE ENLACE: {link}]
+🔒 100% anónimo
+⏱️ Solo toma de {tiempo}
 
-#UNAB #VidaUniversitaria #ElSalvador`
+Enlace directo para participar:
+👉 {link}
+
+#UNAB #ComunidadEstudiantil #InvestigacionAcademica`
   },
   {
     id: "peer-dm-individual",
@@ -331,17 +330,17 @@ Haz valer tu opinión aquí 👇
     perspectiveLabel: "🎓 Estudiante a Estudiante",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Mensaje Directo 1 a 1 de Compañero a Compañero",
-    context: "Para enviar por privado a amigos de clase que aún no han llenado el cuestionario.",
+    title: "Mensaje Directo Individual entre Compañeros",
+    context: "Para compartir por privado a compañeros de clase que aún no han participado.",
     readingTime: "20s",
-    words: 55,
-    subject: "Mensaje Directo Individual",
-    body: `¡Hola! 👋 Mira, te comparto esta encuesta rápida de la UNAB sobre si sentimos que la carrera realmente sirve para conseguir trabajo afuera.
+    words: 50,
+    subject: "Mensaje Directo Colegial",
+    body: `¡Hola! 👋 Te comparto el enlace a la encuesta de investigación de nuestra facultad sobre la pertinencia de los contenidos académicos.
 
-Es 100% anónima y la llenas en {tiempo} desde el cel. Échame la mano llenándola por fa, es para la investigación de la facultad:
+Es 100% anónima y se responde en {tiempo} desde el teléfono. Tu evaluación sincera y objetiva ayuda a que la muestra sea representativa:
 👉 {link}
 
-¡Te lo agradecería un montón!`
+¡Te agradecería mucho tu participación!`
   },
 
   // =========================================================================
@@ -353,23 +352,21 @@ Es 100% anónima y la llenas en {tiempo} desde el cel. Échame la mano llenándo
     perspectiveLabel: "💼 Egresado / Graduado",
     channel: "social",
     channelLabel: "📱 Redes Sociales",
-    title: "Publicación de Egresado en LinkedIn con Foco Profesional",
-    context: "Para graduados activos en el mercado que desean impulsar la pertinencia de su alma mater.",
+    title: "Publicación de Egresado en Redes Profesionales",
+    context: "Para graduados que desean aportar una mirada reflexiva sobre la pertinencia académica y el ejercicio laboral.",
     readingTime: "1m 00s",
-    words: 160,
-    subject: "Post de Graduado UNAB en LinkedIn",
-    body: `Como graduado de la Universidad Dr. Andrés Bello, sé de primera mano lo desafiante que es el mercado laboral salvadoreño al momento de salir de las aulas.
+    words: 140,
+    subject: "Reflexión de Graduado UNAB sobre Pertinencia Curricular",
+    body: `Como graduado de la Universidad Dr. Andrés Bello, reconozco la importancia de que la formación superior mantenga un diálogo constante con las realidades del entorno laboral.
 
-La diferencia entre un egresado que consigue empleo rápido y uno que pasa meses esperando radica en la pertinencia de las competencias que aprendió en su carrera: menos memorización y más habilidades prácticas, pensamiento crítico y herramientas reales.
+La retroalimentación objetiva y fundamentada de los estudiantes activos sobre sus asignaturas es una herramienta clave para comprender la relación entre teoría y práctica profesional.
 
-Por eso celebro que la UNAB esté ejecutando este Diagnóstico de Utilidad Curricular con sus estudiantes activos de {facultad}.
-
-Si hoy estás en las aulas de la UNAB, no dejes pasar esta oportunidad. Tómate {tiempo} para responder con objetividad y madurez profesional:
+Invito a los estudiantes de la {facultad} a participar en este Diagnóstico de Utilidad Curricular:
 👉 {link}
 
-La encuesta es totalmente anónima. Lo que respondas hoy impactará directamente en el valor que el mercado le dará a tu título mañana.
+La encuesta es 100% anónima y toma {tiempo}. Su aporte analítico es un insumo muy valioso para la investigación académica.
 
-#GraduadosUNAB #EducacionYSociedad #MercadoLaboral #ElSalvador`
+#GraduadosUNAB #EducacionSuperior #ComunidadAcademica #ElSalvador`
   },
   {
     id: "egresado-whatsapp-red",
@@ -377,104 +374,100 @@ La encuesta es totalmente anónima. Lo que respondas hoy impactará directamente
     perspectiveLabel: "💼 Egresado / Graduado",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Mensaje de Egresado para Grupos de Tutoría o Exalumnos",
-    context: "Para compartir en grupos mixtos donde conviven egresados, tesistas y estudiantes activos.",
+    title: "Mensaje de Graduado para Grupos de Tutoría o Redes Mixtas",
+    context: "Para compartir en grupos académicos donde conviven graduados y estudiantes.",
     readingTime: "40s",
-    words: 110,
-    subject: "Consejo de Graduado a Estudiantes Activos",
-    body: `Hola a todos en el grupo 👋 Les saluda un egresado de la {facultad}.
+    words: 95,
+    subject: "Mensaje de Graduado a Estudiantes Activos",
+    body: `Estimados compañeros del grupo: les saluda un egresado de la {facultad}.
 
-Un consejo sincero desde la experiencia afuera en las empresas: la mejor forma de que una universidad mejore no es quejándose cuando ya te graduaste, sino participando cuando estás dentro.
+Desde la experiencia en el ejercicio profesional, considero que la evaluación reflexiva de las asignaturas durante la etapa formativa aporta datos indispensables sobre la pertinencia laboral de la carrera.
 
-Ahorita está abierta la evaluación oficial de retorno académico de la UNAB. Solo toma {tiempo} y es 100% anónima.
-
-Si quieren que sus planes de estudio sean más prácticos y valorados por los reclutadores, llenen esto:
+Actualmente se encuentra disponible la encuesta de investigación sobre retorno académico:
 👉 {link}
 
-Aprovechen estos espacios que antes no existían. ¡Mucho éxito en su ciclo!`
+Es 100% anónima y toma únicamente {tiempo}. Les motivo a participar con criterio objetivo. ¡Muchos éxitos en su ciclo académico!`
   },
 
   // =========================================================================
-  // 5. PERSPECTIVA: COMITÉ DE INVESTIGACIÓN CIENTÍFICA
+  // 5. PERSPECTIVA: EQUIPO DE INVESTIGACIÓN CIENTÍFICA
   // =========================================================================
   {
     id: "comite-email-cientifico",
     perspective: "investigacion",
-    perspectiveLabel: "🔬 Comité Científico",
+    perspectiveLabel: "🔬 Equipo de Investigación",
     channel: "email",
     channelLabel: "📧 Correo Institucional",
-    title: "Invitación Metodológica y Ética del Equipo Investigador",
-    context: "Para envío a docentes, tutores de tesis y estudiantes con interés en rigor metodológico y psicometría.",
+    title: "Convocatoria Metodológica del Estudio Psicométrico",
+    context: "Para docentes, tutores y estudiantes interesados en el rigor metodológico y psicométrico del estudio.",
     readingTime: "1m 15s",
-    words: 180,
-    subject: "Convocatoria Científica: Modelo Psicométrico de Inserción Laboral UNAB",
+    words: 165,
+    subject: "Convocatoria Metodológica: Estudio Psicométrico de Inserción Laboral UNAB",
     body: `Estimada comunidad académica de la Universidad Dr. Andrés Bello:
 
-El equipo de investigadores principales del proyecto *Retorno de Inversión Académico e Inserción Laboral* extiende una cordial invitación a formar parte de la muestra probabilística institucional de este ciclo.
+El equipo de investigación a cargo del proyecto *Percepción de Utilidad Curricular y Retorno Formativo* extiende una cordial invitación a formar parte de la muestra institucional de este ciclo.
 
-Nuestro estudio implementa modelos psicométricos avanzados de Análisis Factorial Confirmatorio (CFA), coeficientes de fiabilidad Omega de McDonald ($\omega$) y contraste de hipótesis de Pearson ($r$), orientados a medir la autoeficacia académica y su correlación con la inserción laboral en El Salvador.
+El estudio aplica técnicas psicométricas avanzadas de Análisis Factorial Confirmatorio (CFA), coeficientes de fiabilidad Omega de McDonald ($\omega$) y correlaciones de Pearson, con el propósito de examinar la relación entre la autoeficacia académica y las expectativas laborales.
 
-Principios Éticos y Metodológicos del Instrumento:
+Principios Metodológicos y de Privacidad:
 1. Consentimiento Informado explícito (Bloque 0).
-2. Anonimato absoluto (cero vinculación de identidad o IP).
-3. Generación de constancia criptográfica SHA-256 verificable en tiempo real.
-4. Duración optimizada de {tiempo}.
+2. Anonimato absoluto (cero almacenamiento de identificadores personales o IP).
+3. Generación de constancia criptográfica verificable mediante SHA-256.
+4. Duración estimada: {tiempo}.
 
-Invitamos a cada estudiante de la {facultad} en Sede {sede} a contribuir con sus datos al desarrollo científico del país:
+Agradecemos su colaboración objetiva ingresando en:
 👉 {link}
 
-Por una ciencia rigurosa al servicio del desarrollo salvadoreño.
-
-Comité de Investigación Psicométrica UNAB`
+Proyecto de Investigación Académica • Universidad Dr. Andrés Bello`
   },
   {
     id: "comite-whatsapp-datos",
     perspective: "investigacion",
-    perspectiveLabel: "🔬 Comité Científico",
+    perspectiveLabel: "🔬 Equipo de Investigación",
     channel: "whatsapp",
     channelLabel: "💬 WhatsApp / Telegram",
-    title: "Aviso de Conteo de Muestra y Cierre Próximo",
-    context: "Para enviar durante la fase de refuerzo para recordar la meta de muestra por facultad.",
+    title: "Aviso de Muestreo y Participación Representativa",
+    context: "Para recordar a los grupos la importancia de alcanzar la representatividad estadística por facultad.",
     readingTime: "35s",
-    words: 95,
-    subject: "Aviso de Avance de Muestra en WhatsApp",
-    body: `📊 *BARÓMETRO DE PARTICIPACIÓN UNAB 2026*
+    words: 85,
+    subject: "Aviso de Muestreo Estadístico",
+    body: `📊 *AVISO DE INVESTIGACIÓN ACADÉMICA UNAB*
 
-Aviso del Comité de Investigación para estudiantes de {facultad} (Sede {sede}):
+Estudiantes de {facultad} (Sede {sede}):
 
-Estamos a pocas respuestas de alcanzar la meta de representatividad estadística para tu facultad. Tu participación es decisiva para que los datos reflejen con exactitud la realidad de tu carrera.
+Les recordamos la importancia de sumar su perspectiva a la muestra estadística de su carrera. Una participación representativa garantiza que los datos reflejen con fidelidad las experiencias de todas las áreas de estudio.
 
-⏱️ Solo te tomará {tiempo}.
-🔒 Es 100% anónimo.
-📜 Incluye constancia digital con comprobante al finalizar.
+⏱️ Duración: {tiempo}.
+🔒 100% anónimo y confidencial.
+📜 Constancia digital al finalizar.
 
-Ingresa y suma tu respuesta al barómetro científico:
+Enlace al cuestionario:
 👉 {link}
 
-¡Gracias por tu aporte a la ciencia universitaria!`
+¡Gracias por su colaboración científica!`
   },
   {
     id: "comite-print-flyer",
     perspective: "investigacion",
-    perspectiveLabel: "🔬 Comité Científico",
+    perspectiveLabel: "🔬 Equipo de Investigación",
     channel: "print",
     channelLabel: "📄 Afiches y Material Físico",
-    title: "Volante de Mano / Flyer Informativo con QR para Aulas",
-    context: "Para imprimir en media cuartilla o volante de mano y repartir en pupitres o entradas de biblioteca.",
+    title: "Volante Informativo con Código QR para Aulas",
+    context: "Para material impreso de mano distribuido en aulas o salas de estudio.",
     readingTime: "25s",
-    words: 70,
-    subject: "Flyer de Mano con Código QR",
-    body: `🔬 INVESTIGACIÓN CIENTÍFICA UNAB 2026
-"Percepción de Utilidad Curricular y Retorno Académico"
+    words: 65,
+    subject: "Volante Informativo con QR",
+    body: `🔬 INVESTIGACIÓN ACADÉMICA UNAB
+"Percepción de Utilidad Curricular y Retorno Formativo"
 
-Participa en el estudio que medirá la efectividad de los planes de estudio en El Salvador.
+Colabora en el estudio sobre pertinencia de planes de estudio y competencias laborales.
 
-• 100% Anónimo y Seguro.
+• Participación 100% anónima y confidencial.
 • Duración: {tiempo}.
 • Constancia digital con sello SHA-256.
 
 📱 Escanea el código QR con tu celular o ingresa en:
-{link}`
+👉 {link}`
   },
   {
     id: "docente-print-catedra",
@@ -482,19 +475,20 @@ Participa en el estudio que medirá la efectividad de los planes de estudio en E
     perspectiveLabel: "👨‍🏫 Docente a Estudiante",
     channel: "print",
     channelLabel: "📄 Afiches y Material Físico",
-    title: "Afiche de Cátedra para Murales de Laboratorios y Pasillos",
-    context: "Para colocar en la puerta de los laboratorios especializados y pasillos de la facultad.",
+    title: "Aviso de Cátedra para Laboratorios y Pasillos",
+    context: "Para fijar en carteleras de laboratorios y pasillos de la facultad.",
     readingTime: "30s",
-    words: 80,
+    words: 75,
     subject: "Aviso de Cátedra en Laboratorios",
     body: `👨‍🏫 ATENCIÓN ESTUDIANTES DE {facultad} (SEDE {sede})
-¿Quieres que los laboratorios y prácticas de tu carrera mejoren?
 
-La retroalimentación honesta de los estudiantes es el único insumo válido para actualizar los programas de cátedra y el equipamiento técnico.
+Su valoración reflexiva sobre las asignaturas teóricas y prácticas de la carrera constituye un insumo fundamental para la investigación académica sobre utilidad curricular.
 
-⏱️ Toma solo {tiempo} y es completamente anónimo.
+Les invitamos a participar de forma objetiva y anónima.
+
+⏱️ Duración: {tiempo}.
 📲 Escanea el código QR o ingresa en:
-{link}`
+👉 {link}`
   },
   {
     id: "peer-lms-foro",
@@ -502,21 +496,21 @@ La retroalimentación honesta de los estudiantes es el único insumo válido par
     perspectiveLabel: "🎓 Estudiante a Estudiante",
     channel: "lms",
     channelLabel: "🖥️ Aula Virtual / LMS",
-    title: "Participación en Foro de Aula Virtual / Moodle",
-    context: "Para abrir un hilo de discusión constructiva en los foros de debate del campus virtual.",
+    title: "Mensaje Colegial para Foros de Aula Virtual / Moodle",
+    context: "Para abrir un hilo de participación constructiva en los foros del campus virtual.",
     readingTime: "40s",
-    words: 110,
-    subject: "Hilo de Debate Estudiantil sobre Utilidad Curricular",
-    body: `Hola compañeros de {facultad}:
+    words: 95,
+    subject: "Foro Estudiantil sobre Utilidad Curricular",
+    body: `Estimados compañeros de {facultad}:
 
-Abro este hilo para motivar a que todos nos tomemos {tiempo} en completar la evaluación psicométrica institucional sobre Utilidad Curricular.
+Les comparto este mensaje para motivarles a participar en el diagnóstico académico sobre Utilidad Curricular e Inserción Laboral.
 
-Muchas veces comentamos en los grupos que nos gustaría tener más proyectos prácticos y materias actualizadas con lo que piden las empresas. Esta encuesta es el canal oficial y anónimo para plasmarlo formalmente ante las autoridades.
+Contar con las valoraciones de todos nosotros permite que la investigación refleje con rigor la experiencia estudiantil de nuestra facultad. La encuesta es completamente anónima y toma únicamente {tiempo}.
 
-Pueden responderla desde su celular en este enlace:
+Pueden ingresar desde su dispositivo en el siguiente enlace:
 🔗 {link}
 
-¡Hagamos valer nuestra perspectiva estudiantil!`
+¡Agradezco su colaboración responsable!`
   },
   {
     id: "egresado-speech-charla",
@@ -524,42 +518,43 @@ Pueden responderla desde su celular en este enlace:
     perspectiveLabel: "💼 Egresado / Graduado",
     channel: "speech",
     channelLabel: "🗣️ Speech Oral en Aula (60-90s)",
-    title: "Intervención de Egresado Invitado en Ponencias y Clases",
-    context: "Para ser utilizado por profesionales egresados que asisten como invitados o conferencistas a las aulas.",
+    title: "Intervención de Graduado Invitado en Ponencias y Clases",
+    context: "Para profesionales egresados que visitan las aulas y desean motivar la participación reflexiva.",
     readingTime: "1m 10s",
-    words: 145,
+    words: 130,
     subject: "Guion de Egresado Invitado",
-    body: `"Hola a todos. Como profesional graduado de esta misma facultad en la UNAB, les puedo asegurar que afuera en el mercado laboral cada decisión que tomen en su carrera cuenta.
+    body: `"Buenas tardes a todos. Como profesional graduado de esta facultad en la UNAB, me complace compartir con ustedes este espacio.
 
-Las empresas buscan profesionales adaptables, con sólidas competencias prácticas. Si ustedes sienten que hay áreas de su carrera que necesitan mayor enfoque técnico o preparación para el empleo, este es el momento exacto para decirlo.
+En el mercado laboral actual, la correspondencia entre los contenidos académicos y las habilidades prácticas es un factor clave. Les motivo a participar en el diagnóstico académico sobre retorno curricular que se está llevando a cabo en nuestra universidad.
 
-La universidad tiene activo un diagnóstico de retorno de inversión académica que es 100% anónimo. Les toma únicamente {tiempo}.
+La encuesta es 100% anónima y toma entre {tiempo}. Su valoración objetiva y fundamentada aportará datos sumamente valiosos para este estudio.
 
-He dejado el enlace en el proyector y en el chat: {link}. Llénenlo con total franqueza, porque de la calidad de sus planes de estudio dependerá el prestigio del título que todos llevaremos en nuestro currículum. ¡Éxitos!"`
+He colocado el enlace en pantalla: {link}. Les invito a completarla con total franqueza. ¡Muchos éxitos en su carrera!"`
   },
   {
     id: "comite-social-x",
     perspective: "investigacion",
-    perspectiveLabel: "🔬 Comité Científico",
+    perspectiveLabel: "🔬 Equipo de Investigación",
     channel: "social",
     channelLabel: "📱 Redes Sociales",
-    title: "Campaña de Difusión Científica para Twitter / X e Hilos",
-    context: "Formato síntesis para redes sociales rápidas enfocado en transparencia y participación representativa.",
+    title: "Síntesis para Redes Sociales Académicas",
+    context: "Formato breve para difusión rápida enfocado en transparencia y objetividad.",
     readingTime: "30s",
-    words: 75,
-    subject: "Publicación para Redes Sociales Rápidas",
-    body: `¿La educación universitaria responde al mercado laboral en El Salvador? 📊🇸🇻
+    words: 65,
+    subject: "Publicación para Redes Sociales",
+    body: `Estudio de Investigación Académica UNAB 📊🇸🇻
+"Percepción de Utilidad Curricular y Retorno Formativo" en la {facultad}.
 
-Desde el Comité de Investigación de la UNAB evaluamos psicométricamente la utilidad curricular en la {facultad}.
+Invitamos a la comunidad estudiantil a aportar su valoración reflexiva y objetiva.
 
 ✅ 100% anónimo
-⏱️ Solo {tiempo}
-📜 Constancia digital verificable con sello SHA-256
+⏱️ Duración: {tiempo}
+📜 Constancia digital verificable (SHA-256)
 
-Tu aporte hace la diferencia:
+Participa aquí:
 👉 {link}
 
-#InvestigacionUNAB #EducacionSuperior`
+#InvestigacionAcademica #UNAB #EducacionSuperior`
   }
 ];
 

@@ -53,7 +53,7 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold uppercase tracking-wider text-blue-700">Universidad Dr. Andrés Bello</span>
-            <span class="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-full font-bold">Campaña Oficial 2026</span>
+            <span class="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-full font-bold">Investigación Académica 2026</span>
           </div>
           <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">Centro de Despliegue y Difusión Comunicativa</h1>
         </div>
@@ -75,55 +75,83 @@
   </header>
 
   <!-- =========================================================================
-       2. HERO EJECUTIVO ULTRA-AMIGABLE
+       2. HERO EJECUTIVO LIMPIO (SIN BARRAS DE MÉTRICAS INNECESARIAS)
        ========================================================================= -->
-  <section class="bg-white border-b border-slate-200 pt-8 pb-7 px-4 lg:px-8">
+  <section class="bg-white border-b border-slate-200 pt-7 pb-6 px-4 lg:px-8">
     <div class="max-w-7xl mx-auto">
-      
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold mb-3">
-          <span>📢</span> Comparte la Encuesta en 3 Pasos Sencillos
+          <span>📢</span> Difusión del Estudio de Retorno Formativo e Inserción Laboral
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3">
-          Elige tu medio, personaliza tu mensaje y compártelo con un clic
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight mb-2">
+          Configura tus datos, elige tu canal y obtén tu mensaje listo para compartir
         </h2>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Diseñado para que docentes, directivos y estudiantes extiendan la encuesta oficial de <strong class="text-slate-900">Utilidad Curricular y Expectativas Laborales</strong>. Cada mensaje está 100% redactado y verificado. <span class="font-semibold text-blue-700">Completarla toma de 3 a 5 minutos.</span>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+          Diseñado para que docentes y representantes compartan la encuesta con sus grupos de forma clara, neutral y representativa. <strong class="text-blue-700 font-semibold">Completarla toma entre 3 a 5 minutos.</strong>
         </p>
       </div>
-
-      <!-- Barra Resumen de Métricas -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-100">
-        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div class="text-xl sm:text-2xl font-black text-blue-700">22</div>
-          <div class="text-xs text-slate-600 font-medium">Discursos Listos</div>
-        </div>
-        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div class="text-xl sm:text-2xl font-black text-slate-900">5</div>
-          <div class="text-xs text-slate-600 font-medium">Medios Separados</div>
-        </div>
-        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div class="text-xl sm:text-2xl font-black text-slate-900">3 a 5 min</div>
-          <div class="text-xs text-slate-600 font-medium">Duración Real</div>
-        </div>
-        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div class="text-xl sm:text-2xl font-black text-emerald-600">100%</div>
-          <div class="text-xs text-slate-600 font-medium">Anónimo y Seguro</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- =========================================================================
-       3. NAVEGACIÓN LINEAL PASO A PASO (ULTRA-INTUITIVA)
+       3. CONTENIDO PRINCIPAL: CONFIGURACIÓN VISIBLE + FLUJO PROGRESIVO CONDICIONAL
        ========================================================================= -->
-  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 w-full space-y-8 flex-1">
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-7 w-full space-y-6 flex-1">
 
     <!-- =======================================================================
-         PASO 1: SEPARACIÓN MODULAR DE MEDIOS (COMO EN LA WEB ANTERIOR)
+         CONFIGURACIÓN INICIAL VISIBLE (FACULTAD, SEDE, NOMBRE DEL DOCENTE)
          ======================================================================= -->
-    <section class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+    <section id="config-panel" class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-xs space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+        <div>
+          <h3 class="text-sm sm:text-base font-black text-slate-900 flex items-center gap-2">
+            <span>⚙️</span> Personaliza los Datos de tu Mensaje <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">(Recomendado)</span>
+          </h3>
+          <p class="text-[11px] sm:text-xs text-slate-500">
+            Ingresa tu facultad, sede y nombre para que los mensajes de cátedra e institucionales queden personalizados de inmediato antes de copiar.
+          </p>
+        </div>
+
+        <!-- Selector Inteligente de Modo de Enlace (TinyURL vs UTM) -->
+        <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200 self-start sm:self-auto shrink-0">
+          <label class="relative inline-flex items-center cursor-pointer shrink-0">
+            <input type="checkbox" id="toggle-utm-mode" class="sr-only peer">
+            <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+          </label>
+          <span id="link-mode-label" class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 truncate">
+            Enlace Corto (TinyURL)
+          </span>
+        </div>
+      </div>
+
+      <!-- Formulario de Personalización Visible -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+        <div>
+          <label for="custom-faculty" class="block text-xs font-bold text-slate-700 mb-1">Tu Facultad:</label>
+          <select id="custom-faculty" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-blue-500 focus:bg-white transition">
+            <!-- Rellenado dinámicamente por app.js -->
+          </select>
+        </div>
+
+        <div>
+          <label for="custom-campus" class="block text-xs font-bold text-slate-700 mb-1">Tu Sede:</label>
+          <select id="custom-campus" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-blue-500 focus:bg-white transition">
+            <!-- Rellenado dinámicamente por app.js -->
+          </select>
+        </div>
+
+        <div>
+          <label for="custom-sender" class="block text-xs font-bold text-slate-700 mb-1">Tu Nombre o Cargo:</label>
+          <input type="text" id="custom-sender" placeholder="Ej. Ing. Carlos Rodríguez / Licda. Patricia Guardado"
+                 class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition">
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PASO 1: SELECCIÓN DE MEDIO (VISIBLE POR DEFECTO)
+         ======================================================================= -->
+    <section id="step-1-container" class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-xs space-y-4">
       <div class="flex items-center gap-3">
         <span class="w-8 h-8 rounded-full bg-blue-600 text-white font-black text-sm flex items-center justify-center shrink-0">1</span>
         <div>
@@ -131,24 +159,24 @@
             Paso 1: ¿Por dónde vas a compartir la encuesta?
           </h3>
           <p class="text-xs sm:text-sm text-slate-500">
-            Elige el medio de comunicación que vas a utilizar (cada medio tiene sus textos adaptados):
+            Haz clic en el medio que vas a usar para continuar al siguiente paso:
           </p>
         </div>
       </div>
 
-      <!-- Tarjetas Grandes de Medios Separados -->
+      <!-- Tarjetas de Medios Separados -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 pt-2">
         <button id="btn-chan-todos" data-filter-channel="todos"
-                class="active-channel-card p-3 rounded-2xl border-2 border-blue-600 bg-blue-50/70 text-blue-900 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">🌟</div>
           <div>
             <div class="text-xs font-black">Todos</div>
-            <div class="text-[10px] text-blue-700">Ver todo el catálogo</div>
+            <div class="text-[10px] text-slate-500">Ver todo el catálogo</div>
           </div>
         </button>
 
         <button id="btn-chan-whatsapp" data-filter-channel="whatsapp"
-                class="p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-emerald-500 hover:bg-emerald-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-emerald-500 hover:bg-emerald-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">💬</div>
           <div>
             <div class="text-xs font-black">WhatsApp / Telegram</div>
@@ -157,7 +185,7 @@
         </button>
 
         <button id="btn-chan-email" data-filter-channel="email"
-                class="p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">📧</div>
           <div>
             <div class="text-xs font-black">Correo Institucional</div>
@@ -166,7 +194,7 @@
         </button>
 
         <button id="btn-chan-print" data-filter-channel="print"
-                class="p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-amber-500 hover:bg-amber-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-amber-500 hover:bg-amber-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">📄</div>
           <div>
             <div class="text-xs font-black">Afiche con QR</div>
@@ -175,7 +203,7 @@
         </button>
 
         <button id="btn-chan-speech" data-filter-channel="speech"
-                class="p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-500 hover:bg-purple-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-purple-500 hover:bg-purple-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">📺</div>
           <div>
             <div class="text-xs font-black">Salón de Clases</div>
@@ -184,7 +212,7 @@
         </button>
 
         <button id="btn-chan-social" data-filter-channel="social"
-                class="p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-rose-500 hover:bg-rose-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
+                class="channel-btn p-3 rounded-2xl border-2 border-slate-200 bg-white hover:border-rose-500 hover:bg-rose-50/30 text-slate-800 text-left transition-all hover:shadow-xs flex flex-col justify-between cursor-pointer">
           <div class="text-2xl mb-1.5">📱</div>
           <div>
             <div class="text-xs font-black">Redes Sociales</div>
@@ -197,9 +225,9 @@
     </section>
 
     <!-- =======================================================================
-         PASO 2: ¿QUIÉN ERES TÚ? (PERSPECTIVA DEL EMISOR)
+         PASO 2: SELECCIÓN DE ROL / PERSPECTIVA (CONDICIONAL - INICIA OCULTO)
          ======================================================================= -->
-    <section class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+    <section id="step-2-container" class="bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-xs space-y-4 hidden transition-all duration-300">
       <div class="flex items-center gap-3">
         <span class="w-8 h-8 rounded-full bg-blue-600 text-white font-black text-sm flex items-center justify-center shrink-0">2</span>
         <div>
@@ -207,103 +235,57 @@
             Paso 2: ¿Quién eres tú? (Perspectiva del Mensaje)
           </h3>
           <p class="text-xs sm:text-sm text-slate-500">
-            Elige tu rol para ver los discursos redactados desde tu perspectiva:
+            Selecciona tu rol para ver los discursos adaptados a tu contexto:
           </p>
         </div>
       </div>
 
       <div class="flex flex-wrap gap-2 pt-1">
         <button id="btn-pers-todas" data-filter-perspective="todas"
-                class="active-pers-pill px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-xs transition-all cursor-pointer">
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
           🌟 Todos los Roles
         </button>
         <button id="btn-pers-docente" data-filter-perspective="docente"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
           👨‍🏫 Soy Docente / Catedrático
         </button>
         <button id="btn-pers-estudiante" data-filter-perspective="estudiante"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
           🎓 Soy Estudiante / Representante
         </button>
         <button id="btn-pers-institucional" data-filter-perspective="institucional"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
           🏛️ Institucional (UNAB Oficial)
         </button>
         <button id="btn-pers-egresado" data-filter-perspective="egresado"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
           💼 Soy Graduado / Egresado
         </button>
         <button id="btn-pers-investigacion" data-filter-perspective="investigacion"
-                class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
-          🔬 Comité Científico
+                class="pers-pill px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer">
+          🔬 Equipo de Investigación
         </button>
       </div>
 
-      <!-- Barra de Personalización Opcional y Buscador -->
-      <div class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
-        
-        <!-- Buscador Rápido -->
-        <div class="md:col-span-5 relative">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-sm">🔍</span>
+      <!-- Buscador Rápido y Contador -->
+      <div class="mt-3 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="relative w-full sm:w-80">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-xs">🔍</span>
           <input type="text" id="search-speeches" placeholder="Buscar palabras clave en los mensajes..."
-                 class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                 class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition">
         </div>
-
-        <!-- Selector de Enlace Corto vs UTM -->
-        <div class="md:col-span-4 flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
-          <label class="relative inline-flex items-center cursor-pointer shrink-0">
-            <input type="checkbox" id="toggle-utm-mode" class="sr-only peer">
-            <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
-          </label>
-          <span id="link-mode-label" class="text-[11px] font-bold text-slate-700 truncate">
-            Enlace Corto (TinyURL)
-          </span>
+        <div id="speeches-counter" class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100">
+          Cargando mensajes...
         </div>
-
-        <!-- Contador Dinámico -->
-        <div class="md:col-span-3 text-right">
-          <span id="speeches-counter" class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 inline-block">
-            Cargando mensajes...
-          </span>
-        </div>
-
       </div>
-
-      <!-- Panel Desplegable de Datos Opcionales (Facultad, Sede, Nombre) -->
-      <details class="group bg-slate-50/80 rounded-2xl border border-slate-200 p-3.5 transition">
-        <summary class="text-xs font-bold text-slate-700 cursor-pointer flex items-center justify-between">
-          <span class="flex items-center gap-2">⚙️ ¿Deseas personalizar tu Facultad, Sede o Nombre? <em class="text-slate-400 font-normal">(Opcional)</em></span>
-          <span class="text-blue-600 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 pt-3 border-t border-slate-200">
-          <div>
-            <label for="custom-faculty" class="block text-[11px] font-bold text-slate-600 mb-1">Tu Facultad:</label>
-            <select id="custom-faculty" class="w-full bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500">
-              <!-- Rellenado por app.js -->
-            </select>
-          </div>
-          <div>
-            <label for="custom-campus" class="block text-[11px] font-bold text-slate-600 mb-1">Tu Sede:</label>
-            <select id="custom-campus" class="w-full bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500">
-              <!-- Rellenado por app.js -->
-            </select>
-          </div>
-          <div>
-            <label for="custom-sender" class="block text-[11px] font-bold text-slate-600 mb-1">Tu Nombre o Cargo:</label>
-            <input type="text" id="custom-sender" placeholder="Ej. Ing. Carlos Rodríguez"
-                   class="w-full bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500">
-          </div>
-        </div>
-      </details>
 
       <button id="btn-reset-filters" class="hidden"></button>
     </section>
 
     <!-- =======================================================================
-         PASO 3: CATÁLOGO DE MENSAJES LISTOS (COPIAR CON 1 CLIC)
+         PASO 3: CATÁLOGO DE MENSAJES (CONDICIONAL - INICIA OCULTO)
          ======================================================================= -->
-    <section class="space-y-4">
+    <section id="step-3-container" class="space-y-4 hidden transition-all duration-300">
       <div class="flex items-center justify-between flex-wrap gap-2">
         <div class="flex items-center gap-3">
           <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-black text-sm flex items-center justify-center shrink-0">3</span>
@@ -312,7 +294,7 @@
               Paso 3: Elige tu mensaje y pulsa el botón verde para copiar
             </h3>
             <p class="text-xs sm:text-sm text-slate-500">
-              Haz clic en el botón verde para copiarlo de inmediato a tu portapapeles o en "Ver cómo se ve".
+              Texto 100% redactado con enfoque imparcial y sin sesgos. Pulsa en copiar para pegarlo en tu aplicación.
             </p>
           </div>
         </div>
@@ -324,16 +306,16 @@
         </button>
       </div>
 
-      <!-- Grid de Tarjetas de Discursos (Inyectado por app.js) -->
+      <!-- Grid de Tarjetas de Discursos (Inyectado dinámicamente por app.js) -->
       <div id="speeches-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Renderizado dinámicamente por app.js en fondo blanco limpio -->
+        <!-- Renderizado dinámicamente por app.js -->
       </div>
     </section>
 
     <!-- =======================================================================
          CENTRO DE DESCARGAS OFICIALES Y CÓDIGO QR
          ======================================================================= -->
-    <section class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+    <section class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
         <!-- Previsualización del QR -->
@@ -354,7 +336,7 @@
             Descarga el Código QR Oficial para Presentaciones y Afiches
           </h3>
           <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-            Descarga los archivos oficiales en alta resolución para imprimirlos en murales del campus, proyectarlos en diapositivas de clase o adjuntarlos en tus redes sociales.
+            Descarga los archivos oficiales en alta resolución para imprimirlos en murales del campus, proyectarlos en diapositivas de clase o compartirlos en tus grupos.
           </p>
 
           <div class="flex flex-wrap gap-2.5 pt-2">
@@ -388,12 +370,12 @@
   </main>
 
   <!-- =========================================================================
-       4. PIE DE PÁGINA
+       4. PIE DE PÁGINA (PURIFICADO Y RIGUROSO)
        ========================================================================= -->
   <footer class="bg-white border-t border-slate-200 py-6 px-4 lg:px-8 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       <div>
-        Universidad Dr. Andrés Bello • Dirección de Investigación y Vicerrectoría Académica
+        Universidad Dr. Andrés Bello • Proyecto de Investigación Académica sobre Utilidad Curricular
       </div>
       <div>
         Investigación y Desarrollo por <strong class="text-slate-800">Roberto Samuel García Cerna</strong>
@@ -419,7 +401,7 @@
         </button>
       </div>
 
-      <!-- Selector de Pestaña del Mockup (Incluye Afiche con QR) -->
+      <!-- Selector de Pestaña del Mockup -->
       <div class="flex flex-wrap gap-2 my-4">
         <button id="btn-tab-wa" data-mockup-tab="whatsapp" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white transition cursor-pointer">
           💬 WhatsApp
@@ -444,7 +426,7 @@
   </div>
 
   <!-- =========================================================================
-       MODAL: MODO PROYECCIÓN EN AULA 16:9 (FONDO BLANCO LUMINOSO CON TEMPORIZADOR)
+       MODAL: MODO PROYECCIÓN EN AULA 16:9 (FONDO BLANCO LUMINOSO CON TEMPORIZADOR A 5 MINUTOS)
        ========================================================================= -->
   <div id="presentation-modal" class="fixed inset-0 z-50 bg-white text-slate-900 flex flex-col justify-between p-6 sm:p-10 hidden">
     
@@ -454,7 +436,7 @@
         <img src="assets/logo_unab.png" alt="UNAB" class="h-11 w-auto">
         <div>
           <div class="text-xs uppercase font-extrabold text-blue-700 tracking-wider">Universidad Dr. Andrés Bello</div>
-          <div class="text-sm font-bold text-slate-800">Investigación Oficial • Retorno de Inversión Académico</div>
+          <div class="text-sm font-bold text-slate-800">Estudio Académico • Percepción de Utilidad Curricular e Inserción Laboral</div>
         </div>
       </div>
       <button id="btn-close-presentation" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-300 transition cursor-pointer">
@@ -481,8 +463,8 @@
         <div class="bg-blue-50/60 border border-blue-200 p-5 rounded-2xl space-y-2.5">
           <div class="text-xs font-black uppercase tracking-wider text-blue-900">3 Pasos Rápidos para Participar:</div>
           <ol class="text-xs sm:text-sm text-slate-700 space-y-2 list-decimal list-inside font-medium">
-            <li>Abre la cámara de tu teléfono móvil y enfoca el código QR.</li>
-            <li>Responde con total sinceridad (es <strong class="text-emerald-700 font-bold">100% anónimo</strong> y toma solo <strong class="text-blue-700">3 a 5 minutos</strong>).</li>
+            <li>Abre la cámara de tu teléfono móvil y enfoca el código QR en pantalla.</li>
+            <li>Responde con total sinceridad (es <strong class="text-emerald-700 font-bold">100% anónimo</strong> y toma de <strong class="text-blue-700">3 a 5 minutos</strong>).</li>
             <li>Al finalizar, descarga tu constancia digital de participación con sello SHA-256.</li>
           </ol>
         </div>
@@ -494,21 +476,21 @@
         </div>
       </div>
 
-      <!-- Columna Derecha: QR Gigante y Cronómetro -->
+      <!-- Columna Derecha: QR Gigante y Cronómetro (05:00) -->
       <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-5">
         <div class="p-4 bg-white rounded-3xl shadow-xl border-4 border-blue-600">
           <img src="assets/QR_UNAB_ROI_Academico.png" alt="Escanear QR" class="w-64 h-64 sm:w-72 sm:h-72 object-contain">
         </div>
 
-        <!-- Cronómetro Interactivo Calibrado a 4 Minutos -->
+        <!-- Cronómetro Interactivo Calibrado a 5 Minutos (05:00) -->
         <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex flex-col items-center w-full max-w-xs shadow-sm">
           <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Tiempo Restante para Responder</div>
           <div id="pres-timer-display" class="font-mono text-4xl font-black text-blue-700 tracking-tight my-1">
-            04:00
+            05:00
           </div>
           <div class="flex items-center gap-2 mt-2 w-full justify-center">
             <button id="pres-timer-toggle" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition shadow-sm cursor-pointer">
-              <span>▶️</span> Iniciar Tiempo
+              <span>▶️</span> Iniciar 5 Minutos
             </button>
             <button id="pres-timer-reset" class="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer">
               🔄
@@ -519,9 +501,9 @@
 
     </div>
 
-    <!-- Barra Inferior -->
+    <!-- Barra Inferior (Purificada) -->
     <div class="text-center text-xs text-slate-500 border-t border-slate-200 pt-3">
-      Universidad Dr. Andrés Bello • Instrumento Psicométrico Avalado por el Comité de Ética en Investigación
+      Universidad Dr. Andrés Bello • Estudio Académico de Percepción de Utilidad Curricular e Inserción Laboral
     </div>
 
   </div>

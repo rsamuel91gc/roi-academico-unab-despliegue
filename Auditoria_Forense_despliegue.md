@@ -2,7 +2,7 @@
 > **Proyecto Auditado**: `despliegue`  
 > **Ruta Absoluta**: `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue`  
 > **Modelo Evaluador Local**: `qwen3.8:27b`  
-> **Fecha de Ejecución**: `2026-11-12T07:19:20.579157Z`  
+> **Fecha de Ejecución**: `2026-11-12T15:14:14.014895Z`  
 > **Directriz Rectora**: Principio de Existencia Funcional Binaria y Convergencia de Punto Fijo. Cero tolerancia a stubs o simulaciones.
 
 ---
@@ -24,9 +24,9 @@
 
 - **Archivos de Código Analizados**: `8`
 - **Llamadas RPC / API en Frontend**: `0`
-- **Funciones y Endpoints en Backend**: `19`
-- **Identificadores DOM Declarados**: `40`
-- **Consultas a Elementos del DOM (`getElementById`)**: `29`
+- **Funciones y Endpoints en Backend**: `22`
+- **Identificadores DOM Declarados**: `44`
+- **Consultas a Elementos del DOM (`getElementById`)**: `33`
 - **Botones y Acciones Interactivas**: `25`
 - **Inyecciones `.innerHTML` Auditadas**: `13`
 - **Manejadores de Bloqueos (`LockService` / Mutex)**: `0`
@@ -43,9 +43,9 @@
 ## 🌲 4. Diagnóstico Anatómico Bonsái: Índice de Vitalidad y Propuesta de Poda
 - **Fase de Madurez del Proyecto**: `STAGE_DEV`
 - **Índice de Vitalidad Promedio**: `75.0%`
-- **Total Nodos Evaluados**: `22`
+- **Total Nodos Evaluados**: `25`
 - **Ramas Sanas & Protegidas**: `0`
-- **Ramas en Incubación (Pre-Producción)**: `22`
+- **Ramas en Incubación (Pre-Producción)**: `25`
 - **Candidatos a Corte Radial (Ramas Secas)**: `0`
 - **Código Zombi Detectado**: `0`
 - **Ramas Requiriendo Alambrado/Refactor**: `0`
@@ -64,7 +64,7 @@
 | `TestDespliegueE2E` | class | **75.0%** | INCUBACION | INCUBACION |
 | `setUpClass` | method | **75.0%** | INCUBACION | INCUBACION |
 | `tearDownClass` | method | **75.0%** | INCUBACION | INCUBACION |
-| `test_01_desktop_full_interactions` | method | **75.0%** | INCUBACION | INCUBACION |
+| `test_01_desktop_progressive_flow_and_interactions` | method | **75.0%** | INCUBACION | INCUBACION |
 | `test_02_mobile_pixel7_responsiveness` | method | **75.0%** | INCUBACION | INCUBACION |
 | `TestDespliegueIntegrity` | class | **75.0%** | INCUBACION | INCUBACION |
 | `setUp` | method | **75.0%** | INCUBACION | INCUBACION |
