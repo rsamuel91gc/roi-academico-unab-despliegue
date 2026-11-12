@@ -278,3 +278,43 @@
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_afiche_carta_preview.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\brain\296c85dc-ae26-4ca7-bcbf-48af09f4f178\verified_afiche_4x6_preview.png`
 - `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`
+
+
+---
+
+### Entrada Correlativa #[007]
+- **Fecha y Hora**: 2026-11-12T12:05:00-06:00
+- **Contexto Operativo**: Retiro definitivo de autoría no autorizada e institucional no pedida ("Dirección de Investigación y Proyección Social") en los afiches impresos Carta y 4x6" en `despliegue`.
+- **Solicitud del Usuario**: "Quita la autoria a la Dirección de Investigación y Proyección Social, regla inquebrantable de este proyecto, nadie tiene autoria de nada excepto yo, y si yo no te digo que lo coloques no lo hagas /plan /grill-me" y "No he pedido purga, los afiches son los que no quiero que lleven datos que no he pedido".
+
+#### [OPERACIÓN]
+1. **Supresión Quirúrgica en `generate_pdf_poster.py`**:
+   - En el pie de página del afiche tamaño Carta (8.5 × 11 pulgadas), se erradicó la mención `"Dirección de Investigación y Proyección Social • "`, preservando exclusivamente las 4 sedes regionales institucionales (`San Salvador • Sonsonate • Chalatenango • San Miguel`).
+   - En el pie de página del volante de 4 × 6 pulgadas, se eliminó la fila secundaria `"Dirección de Investigación y Proyección Social"`, conservando únicamente la marca institucional `"Universidad Dr. Andrés Bello • El Salvador"` y el hito `"UNAB 2026"`.
+2. **Blindaje en la Suite de Pruebas de Integridad**:
+   - En `despliegue/tests/test_despliegue_integrity.py`, se amplió `test_08_strict_factual_purity` para inspeccionar `generate_pdf_poster.py` e incluir `"Proyección Social"` dentro de los términos prohibidos estrictos junto con `"Comité de Ética"`, `"Vicerrectoría Académica"` y `"Dirección de Investigación"`.
+3. **Regeneración Determinista de Artefactos de Impresión**:
+   - Ejecución de `python generate_pdf_poster.py` con Playwright headless Chromium.
+   - Certificación de 1 página estricta con `pypdf` (`len(pages) == 1`) en `Afiche_Promocional_UNAB_ROI_Carta.pdf` (436,158 bytes) y `Afiche_Promocional_UNAB_ROI_4x6.pdf` (413,495 bytes).
+   - Generación de miniaturas oficiales `Afiche_Promocional_UNAB_ROI_Carta.png` y `Afiche_Promocional_UNAB_ROI_4x6.png`.
+   - Extracción y validación textual directa con script Python confirmando cero ocurrencias de términos prohibidos.
+4. **Testing Automatizado y Despliegue en GitHub Pages**:
+   - Ejecución de `pytest tests/`: 13 de 13 pruebas superadas (100% éxito) en 12.51s.
+   - Sincronización git y despliegue a GitHub Pages (`main 4a35944`) mediante `deploy_despliegue_github_pages.py`.
+   - Verificación de disponibilidad HTTP 200 OK en `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`.
+
+#### [VALIDACIÓN]
+- `generate_pdf_poster.py`: Carta 1 pág (436,158 bytes), 4x6" 1 pág (413,495 bytes).
+- `pytest tests/`: 13 pruebas aprobadas en 12.51s (100% éxito).
+- `pypdf text extraction`: 0 coincidencias de "Dirección de Investigación" y 0 de "Proyección Social".
+- GitHub Pages en vivo: HTTP 200 OK en `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`.
+
+#### [ARTEFACTOS]
+- `https://rsamuel91gc.github.io/roi-academico-unab-despliegue/`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\generate_pdf_poster.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\tests\test_despliegue_integrity.py`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_Carta.pdf`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_4x6.pdf`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_Carta.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\assets\Afiche_Promocional_UNAB_ROI_4x6.png`
+- `C:\Users\Samuel Garcia\.gemini\antigravity\scratch\despliegue\Bitacora_despliegue.md`

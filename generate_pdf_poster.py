@@ -87,6 +87,7 @@ html_carta = f"""<!DOCTYPE html>
       color: #ffffff;
       padding: 16mm 16mm 14mm 16mm;
       border-bottom: 5px solid #f59e0b;
+      text-align: center;
     }}
     .header-badge {{
       display: inline-block;
